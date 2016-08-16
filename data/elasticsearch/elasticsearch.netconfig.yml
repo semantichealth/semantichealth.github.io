@@ -1,0 +1,12 @@
+# ---------------------------------- Network -----------------------------------
+#
+# Set the bind address to a specific IP (IPv4 or IPv6):
+#
+network.host: "_ec2:publicDns_"
+network.bind_host: "_ec2:publicDns_"
+network.public_host: "_ec2:publicDns_"
+transport.host: "_ec2:publicDns_"
+transport.bind_host: "_ec2:publicDns_"
+transport.publish_host: "_ec2:publicDns_"
+#
+# Set a custom port for HTTP:

@@ -1,0 +1,125 @@
+1710118021
+
+curl -XGET http://169.45.104.77:9200/plans/plan/_search?pretty -d '{
+"_source": ["level", "plan_name", "url", "logo_url", "state"],
+"query": {
+    "nested": {
+        "path": "providers",
+        "query": {
+            "filtered": {
+                "filter": {
+                    "match": {
+                        "providers.provider_name": "leslie"
+                    }
+                }
+            }
+        },
+        "inner_hits": {
+            "from": 0,
+            "size": 3
+        }
+    }
+}
+}'
+
+
+curl -XGET http://169.45.104.77:9200/plans2/plan/_search -d '{
+"_source": ["level", "plan_name", "url", "state"],
+"query": {
+    "nested": {
+        "path": "providers",
+        "query": {
+            "filtered": {
+                "filter": {
+                    "match": {
+                        "providers.npi": "1710118021"
+                    }
+                }
+            }
+        },
+        "inner_hits": {
+            "from": 0,
+            "size": 3
+        }
+    }
+}
+}'
+
+
+curl -XGET http://169.45.104.82:9200/plans/plan/_search -d '{
+"_source": ["level", "plan_name", "url", "state"],
+"query": {
+    "nested": {
+        "path": "providers",
+        "query": {
+            "filtered": {
+                "filter": {
+                    "match": {
+                        "providers.npi": "1710118021"
+                    }
+                }
+            }
+        },
+        "inner_hits": {
+            "from": 0,
+            "size": 3
+        }
+    }
+}
+}'
+
+
+
+curl -XGET http://169.45.104.77:9200/plans/plan/_search -d '{"_source": ["level", "plan_name", "url", "state"] }'
+
+
+
+
+
+10191NJ0190001
+
+
+curl -XGET http://169.45.104.77:9200/plans2/plan/_search?pretty -d '{
+"_source": ["level", "plan_name", "url", "state", "providers"],
+  "query": {
+      "match": {
+        "providers": "mary"
+      }
+    }
+}'
+
+curl -XGET http://169.45.104.77:9200/plans2/plan/_search?pretty -d '{
+"_source": ["issuer", "state", "plan_name", "logo_url"],
+  "query": {
+    "bool": {
+      "must_not": [
+        {
+          "match": {
+            "logo_url": "*"
+          }
+        }
+      ]
+    }
+  }
+}'
+
+<?xml version="1.0" encoding="utf-8"?>
+ <service>
+   <short>Elasticsearch</short>
+   <description>Elasticsearch is a distributed, open source search and analytics engine, designed for horizontal scalability, reliability, and easy management.</description>
+   <port protocol="tcp" port="9300"/>
+   <port protocol="tcp" port="9200"/>
+   <port protocol="udp" port="54328"/>
+ </service
+
+firewall-cmd --zone=public --permanent --add-service=elasticsearch
+firewall-cmd --zone=public --permanent --add-source=173.241.25.103/32
+firewall-cmd --zone=public --permanent --add-source=169.45.104.75/32
+firewall-cmd --zone=public --permanent --add-source=169.45.104.74/32
+firewall-cmd --zone=public --permanent --add-source=169.45.104.77/32
+firewall-cmd --zone=public --permanent --add-source=169.45.104.76/32
+firewall-cmd --zone=public --permanent --add-source=54.197.22.2/32
+firewall-cmd --zone=public --permanent --add-source=99.190.115.88/32
+firewall-cmd --zone=public --permanent --add-source=76.14.30.168/32
+firewall-cmd --zone=public --permanent --add-source=74.70.7.49/32
+

@@ -1,0 +1,18 @@
+10.161.98.32 data03   .76
+10.161.98.33 data06   .82
+10.161.98.19 data07   .75
+10.161.98.22 data08   .74
+10.161.98.16 lb1      .77
+
+
+db.createUser({user: "awsebuser", pwd: "7YetpsxYN7Qh", roles: [ {role: "read", db: "providers" }, {role: "read", db: "plans"},{role:"read", db:"formularies"}]})
+
+db.createUser({user: "tgthomas", pwd: "mongo112358", roles: [ {role: "readWrite", db: "providers" }, {role: "readWrite", db: "plans"},{role:"readWrite", db:"formularies"}]})
+
+db.createUser({user: "letor", pwd: "mongo112358", roles: [ {role: "readWrite", db: "providers" }, {role: "readWrite", db: "plans"},{role:"readWrite", db:"formularies"}]})
+
+mongo -u siteUserAdmin -p w210davidcoco 52.53.173.200:27017 --authenticationDatabase admin
+
+mongo -u siteUserAdmin -p w210davidcoco ec2-52-53-173-200.us-west-1.compute.amazonaws.com --authenticationDatabase admin
+MongoDB shell version: 3.2.8
+connecting to: ec2-52-53-173-200.us-west-1.compute.amazonaws.com/test

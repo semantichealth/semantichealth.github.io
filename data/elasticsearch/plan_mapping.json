@@ -1,0 +1,141 @@
+{"settings": {
+    "number_of_shards": 4,
+    "number_of_replicas": 0,
+    "refresh_interval": "-1",
+    "index": {
+      "analysis": {
+        "analyzer": {
+          "simpleAnalyzer": {
+            "type": "custom",
+            "tokenizer": "customTokenizer1"
+          }
+        },
+        "tokenizer": {
+          "customTokenizer1": {
+            "type": "lowercase"
+          }
+        }
+      }
+    }
+  },
+  "mappings": {
+    "plan": {
+      "properties": {
+        "issuer": {
+          "type": "string",
+          "index": "analyzed",
+          "fields": {
+            "raw": {
+              "type": "string",
+              "index": "not_analyzed"
+            }
+          }
+        },
+        "level": {
+          "type": "string",
+          "fields": {
+            "raw": {
+              "type": "string",
+              "index": "not_analyzed"
+            }
+          }
+        },
+        "url": {
+          "type": "string",
+          "index": "no"
+        },
+        "logo_url": {
+          "type": "string",
+          "index": "no"
+        },
+        "state": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "plan_name": {
+          "type": "string"
+        },
+        "plan_type": {
+          "type": "string",
+          "fields": {
+            "raw": {
+              "type": "string",
+              "index": "not_analyzed"
+            }
+          }
+        },
+        "premiums_median": {
+          "type": "float"
+        },
+        "premiums_q1": {
+          "type": "float",
+          "index": "no"
+        },
+        "premiums_q3": {
+          "type": "float",
+          "index": "no"
+        },
+        "drugs": {
+          "type": "string",
+          "analyzer": "simpleAnalyzer"
+        },
+        "conditions": {
+          "type": "string",
+          "fields": {
+            "raw": {
+              "type": "string",
+              "index": "not_analyzed"
+            }
+          }
+        },
+        "providers": {
+          "type": "nested",
+          "properties": {
+            "provider_name": {
+              "type": "string",
+              "analyzer": "simpleAnalyzer"
+            },
+            "specialities": {
+              "type": "string",
+              "analyzer": "simpleAnalyzer"
+            },
+            "npi": {
+              "type": "string",
+              "index": "no"
+            }
+          }
+        },
+        "plan_rank_0": {
+          "type": "float"
+        },
+        "plan_rank_1": {
+          "type": "float"
+        },
+        "plan_rank_2": {
+          "type": "float"
+        },
+        "plan_rank_3": {
+          "type": "float"
+        },
+        "plan_rank_4": {
+          "type": "float"
+        },
+        "plan_rank_5": {
+          "type": "float"
+        },
+        "plan_rank_6": {
+          "type": "float"
+        },
+        "plan_rank_7": {
+          "type": "float"
+        },
+        "plan_rank_8": {
+          "type": "float"
+        },
+        "plan_rank_9": {
+          "type": "float"
+        }
+      }
+    }
+  }
+}

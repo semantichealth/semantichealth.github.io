@@ -1,0 +1,245 @@
+- hosts: all
+  gather_facts: yes
+  remote_user: root
+  become: true
+  vars:
+    java8_download_url: 'http://download.oracle.com/otn-pub/java/jdk/8u91-b14/jdk-8u91-linux-x64.tar.gz'
+    java8_download_folder: /opt
+    java_name: '{{java8_download_folder}}/jdk1.8.0_91'
+    java_archive: '{{java8_download_folder}}/jdk-8u91-linux-x64.tar.gz'
+    data_disk_dev: '/dev/xvdc'
+    data_disk: '/dev/xvdc'
+    data_disk_path: '/data'
+
+  tasks:
+  - name: update hosts file
+    lineinfile:
+      dest=/etc/hosts
+      regexp='{{ item }}.*$'
+      line="{{ item }} {{ hostvars[item].host_alias }}"
+      state=present
+    with_items: "{{groups['all']}}"
+
+  - name: partition data device
+    shell: |
+      if
+          [ -b '{{data_disk}}' ]
+      then
+          [ -b '{{data_disk}}' ] || parted --script '{{ data_disk }}' mklabel gpt mkpart primary 1MiB 100%
+      fi
+    args:
+      creates: '{{ data_disk }}'
+      executable: '/bin/bash'
+
+  - name: format data disk
+    filesystem:
+      dev={{data_disk}}
+      fstype=ext4
+
+  - name: create data disk directory
+    file:
+      path={{data_disk_path}}
+      state=directory
+      group=root
+      owner=root
+      recurse=yes
+
+  - name: create data disk mount point
+    mount:
+      fstype=ext4
+      name={{data_disk_path}}
+      src={{data_disk_dev}}
+      state=mounted
+
+  - name: swap - remove current swaps from fstab
+    lineinfile:
+      dest: /etc/fstab
+      regexp: '^/[\S]+\s+none\s+swap '
+      state: absent
+
+  - name: swap - disable swap
+    command: swapoff --all
+    ignore_errors: yes
+
+  - name: install elasticsearch gpg key
+    rpm_key:
+      state=present
+      key='https://packages.elastic.co/GPG-KEY-elasticsearch'
+
+  - name: install elasticsearch repo
+    copy:
+      src=templates/elasticsearch.repo
+      dest=/etc/yum.repos.d/
+      owner=root
+      group=root
+      mode=0644
+
+  - name: Add EPEL repository
+    yum_repository:
+      name: epel
+      description: EPEL YUM repo
+      baseurl: http://dl.fedoraproject.org/pub/epel/7/x86_64
+      state: present
+      gpgcheck: no
+
+  - name: yum update
+    yum: name=* state=latest
+
+  - name: install dev tools
+    yum: name="@Development tools" state=present
+
+  - name: install pip
+    yum: name=python-pip state=present
+
+  - name: download oracle java8
+    command: "wget -q -O {{java_archive}} --no-cookies --no-check-certificate --header 'Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie' {{java8_download_url}} creates={{java_archive}}"
+
+  - name: upack Java8 archive
+    unarchive:
+      src={{java_archive}}
+      dest={{java8_download_folder}}
+      copy=no
+
+  - name: fix Java8 ownership
+    file:
+      state=directory
+      path={{java_name}}
+      owner=root
+      group=root
+      recurse=yes
+
+  - name: make java available for system
+    command: 'alternatives --install "/usr/bin/java" "java" "{{java_name}}/bin/java" 2000'
+
+  - name: cleanup
+    file:
+      state=absent
+      path={{java_archive}}
+
+  - name: set max file descriptors permanently
+    lineinfile:
+      dest=/etc/sysctl.conf
+      state=present
+      insertafter="^net.ipv4.tcp_synack_retries"
+      line="fs.file-max = 100000"
+
+  - name: set max file descriptors immediately
+    shell: sysctl -w fs.file-max=100000
+
+  - name: set max file descriptors for elasticsearch user
+    lineinfile:
+      dest=/etc/security/limits.conf
+      insertbefore="^# End of file"
+      line="elasticsearch soft nofile 65535\nelasticsearch hard nofile 65535"
+      state=present
+
+  - name: install elasticsearch
+    yum: name=elasticsearch state=present
+
+  - name: add elasticsearch service to chkconfig
+    shell: chkconfig --add elasticsearch
+
+  - name: set permissions on data dir
+    shell: chown -R elasticsearch:elasticsearch /data
+
+  - name: set elasticsearch heap size
+    lineinfile: 'dest=/etc/sysconfig/elasticsearch
+      state=present
+      insertafter="^#ES_HEAP_SIZE=4g"
+      line="ES_HEAP_SIZE=2g"'
+
+  - name: set cluster name
+    lineinfile: 'dest=/etc/elasticsearch/elasticsearch.yml
+      state=present
+      insertafter="^# cluster.name"
+      line="cluster.name: w210"'
+
+  - name: set cluster data directory
+    lineinfile: 'dest=/etc/elasticsearch/elasticsearch.yml
+      state=present
+      insertafter="^# path.data"
+      line="path.data: {{ data_disk_path}}"'
+
+  - name: set cluster node name
+    lineinfile: 'dest=/etc/elasticsearch/elasticsearch.yml
+      state=present
+      insertafter="^# node.name"
+      line="node.name: {{ hostvars[inventory_hostname].host_alias }}"'
+
+  - name: set node as data node
+    lineinfile: 'dest=/etc/elasticsearch/elasticsearch.yml
+      state=present
+      insertafter="^node.name"
+      line="node.data: true"'
+
+  - name: set network.host
+    lineinfile: 'dest=/etc/elasticsearch/elasticsearch.yml
+      state=present
+      insertafter="^# network.host"
+      line="network.host: {{ inventory_hostname }}"'
+
+  - name: set network.bind
+    lineinfile: 'dest=/etc/elasticsearch/elasticsearch.yml
+      state=present
+      insertafter="^network.host"
+      line="network.bind_host: {{ inventory_hostname }}"'
+
+  - name: disable multicast discovery
+    lineinfile: 'dest=/etc/elasticsearch/elasticsearch.yml
+      state=present
+      insertafter="^# discovery.zen.ping.unicast.hosts"
+      line="discovery.zen.ping.multicast.enable: false"'
+
+  - name: set discovery node list
+    lineinfile: 'dest=/etc/elasticsearch/elasticsearch.yml
+      state=present
+      insertafter="^discovery.zen.ping.multicast.enable"
+      line="discovery.zen.ping.unicast.hosts: [\"{% for host in groups["all"] %}{{ hostvars[host].host_alias }}\"{%if not loop.last %},\"{% endif %}{% endfor %}]"'
+
+  - name: install elasticHQ plugin
+    command: /usr/share/elasticsearch/bin/plugin install royrusso/elasticsearch-HQ
+      creates=/usr/share/elasticsearch/plugins/hq
+
+  - name: enable cors
+    lineinfile: 'dest=/etc/elasticsearch/elasticsearch.yml
+      state=present
+      insertafter=EOF
+      line="http.cors.enabled: true"'
+  - name: enable cors origin
+    lineinfile: 'dest=/etc/elasticsearch/elasticsearch.yml
+      state=present
+      insertbefore=EOF
+      line="http.cors.allow-origin: \"*\""'
+
+  - name: enable http compression
+    lineinfile: 'dest=/etc/elasticsearch/elasticsearch.yml
+      state=present
+      insertbefore=EOF
+      line="http.compression: true"'
+
+  - name: install python modules
+    sudo: true
+    pip: name={{item}}
+    with_items:
+      - elasticsearch
+      - softlayer-object-storage
+
+- hosts: master
+  remote_user: root
+  tasks:
+
+    - name: set node as master node
+      lineinfile: 'dest=/etc/elasticsearch/elasticsearch.yml
+        state=present
+        insertafter="^node.data"
+        line="node.master: true"'
+
+    - name: start master node elasticsearch service
+      shell: service elasticsearch start
+
+- hosts: datanodes
+  remote_user: root
+  tasks:
+
+    - name: start data node elasticsearch service
+      shell: service elasticsearch start

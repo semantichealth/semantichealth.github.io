@@ -1,0 +1,58 @@
+- hosts: all
+  gather_facts: yes
+  remote_user: root
+  become: true
+  tasks:
+
+    - name: update hosts file
+      lineinfile:
+        dest=/etc/hosts
+        regexp='{{ item }}.*$'
+        line="{{ item }} {{ hostvars[item].host_alias }}"
+        state=present
+      with_items: groups['all']
+
+    - name: install 10Gen repo
+      copy: src=10gen.repo.j2 dest=/etc/yum.repos.d/10gen.repo
+
+    - name: Create the mongod user
+      user: name=mongod comment="MongoD"
+
+    - name: Create the data dictionary for the namenode metadata
+      file: path={{ mongodb_datadir_prefix }} owner=mongod group=mongod state=directory
+
+    - name: install monogod package
+      yum: name=e{{ item }} state=installed
+      with_items:
+        - libselinux-python
+        - mongo-10gen
+        - mongo-10gen-server
+        - bc
+        - python-pip
+
+    - name: Install the latest pymongo package
+      sudo: true
+      pip: name=pymongo state=latest use_mirrors=no
+
+    - name: reload systemctl daemon
+      shell: systemctl daemon-reload
+
+- hosts: master
+  remote_user: root
+  tasks:
+
+    - name: set node as master node
+      lineinfile: 'dest=/etc/elasticsearch/elasticsearch.yml
+        state=present
+        insertafter="^node.data"
+        line="node.master: true"'
+
+    - name: start master node elasticsearch service
+      shell: service elasticsearch start
+
+- hosts: datanodes
+  remote_user: root
+  tasks:
+
+    - name: start data node elasticsearch service
+      shell: service elasticsearch start
