@@ -1,5 +1,8 @@
 # Runtime Executer
 
+###steps
+![alt tag](https://github.com/semantichealth/semantichealth.github.io/blob/master/letor/doc/runtime.jpg)
+
 ###class
     letor_online(query_vocab, cluster_centroids, similarity = 0.8)
 - query_vocab         : vocabulary dictionary fitted for learned queries
