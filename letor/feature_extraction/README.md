@@ -2,14 +2,21 @@
 
 ## Feature Description
 ### Coverage flag:
-- Plan: formulary tier type
+- Plan: formulary tier type (one-hot-encoding for all tier property combinations)
 - Drug: 0/1 indicator for all drugs
 - Provider: 0/1 indicator for all providers
 
 ### Summary statistics:
 - Plan: average of copay and coinsurance
-- Drug: count of coverage type
-- Provider: count of coverage type
+- Drug: count of one-hot-encoded coverage type (e.g. quantity_limit/authorization/step_treat)
+- Provider: count of one-hot-encoded coverage type (e.g. specialty/language/network_tier)
+
+### Each feature utilizes a column in the feature vector
+- Sparse vector (csr) representation
+- Saved on S3 for training procedure to retrieve
+
+## Training Data
+![alt tag](https://github.com/semantichealth/semantichealth.github.io/blob/master/letor/doc/feature.jpg)
 
 ## File Description
 Name|Function
