@@ -8,6 +8,12 @@
 - each cluster will have a recommended ranking for the plans
 - pre-ranked weight will be indexed for each state in ElasticSearch server for online prediction
 
+###Identify Search Context
+![alt tag](https://github.com/semantichealth/semantichealth.github.io/blob/master/letor/doc/offline_characterizer.jpg)
+
+###Build Pair-wise Model
+![alt tag](https://github.com/semantichealth/semantichealth.github.io/blob/master/letor/doc/offline_svm.jpg)
+
 ### File Description:
 Name|Function
 ---|---
