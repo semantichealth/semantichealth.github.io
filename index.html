@@ -50,13 +50,13 @@
                         <a href="#data">Data</a>
                     </li>
                     <li>
-                        <a href="#elastic">Elasticsearcb</a>
-                    </li>
-                    <li>
                         <a href="#web">Web</a>
                     </li>
                     <li>
                         <a href="#letor">Letor</a>
+                    </li>
+                    <li>
+                        <a href="#next">Next</a>
                     </li>
                     <li>
                         <a href="#team">Team</a>
@@ -93,7 +93,7 @@
     <!-- Page Content -->
 
 	<a  name="problem"></a>
-    <div class="content-section-a">
+    <div class="content-section-b">
       <div class="container">
           <div class="row">
               <div class="col-md-8 col-md-offset-2">
@@ -112,30 +112,11 @@
     </div>
 
   <a name="data"></a>
-    <div class="content-section-b">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2">
-                    <h2 class="section-heading">Data</h2>
-                </div>
-            </div>
-            <div class="row">
-              <!-- <div class="col-md-8 col-md-offset-2"> -->
-                <p class="lead">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi in egestas nisl. Suspendisse viverra tortor ante, et efficitur elit ullamcorper nec. Phasellus auctor elit at est hendrerit auctor. Praesent ac est vitae nulla malesuada ultrices. Cras maximus iaculis tincidunt. Proin vel tellus imperdiet, placerat ante a, euismod lectus. Etiam dapibus ligula felis, id posuere orci venenatis venenatis. Nulla vel tempus metus.
-                </p>
-              <!-- </div> -->
-            </div>
-        </div>
-        <!-- /.container -->
-    </div>
-
-  <a name="elastic"></a>
     <div class="content-section-a">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
-                    <h2 class="section-heading">Elasticsearch</h2>
+                    <h2 class="section-heading">Data Engineering</h2>
                 </div>
             </div>
             <div class="row">
@@ -153,8 +134,91 @@
     <div class="content-section-b">
         <div class="container">
             <div class="row">
+                <h2 class="section-heading">Web Development</h2>
+                <p class="lead">
+                    Semantic Health is a web application that helps people choose the right Obamacare plan.
+                    Our users interact with our product through this inteface only.
+                    We want this application to have a number of features that would help them accomplish their goals.
+                    Here is a list of requirements for the webpage:
+                </p>
+                <ol class="lead">
+                  <li>Accept and validate input form.</li>
+                  <li>Show insurance plans in an organized manner.</li>
+                  <li>Interactivity via faceted search.</li>
+                  <li>Rank results using LETOR algorithm.</li>
+                  <li>Collect clickstream data.</li>
+                </ol>
+            </div>
+            <div class="row">
+                <h3 class="text-center">Implementation</h3>
+                <img src="/static/img/web/web-tech.png" class="img-responsive center-block" alt="Web Technologies">
+                <h3 class="text-center">Flask</h2>
+                <p class="lead">
+                  The above schematic shows all the components in our web application.
+                  All of the requirements were satisfied by this setup.
+                  The webserver is based on Flask.
+                  This web framework is based on Python, and it is extremely easy to get a production server up and running.
+                  Our web server manages all the backend web functionalities.
+                  It takes in the user's input, validates it, and sends the query to the frontend.
+                  It also has endpoints to log the visitor and clickstream data in a AWS RDS PostgreSQL database.
+                </p>
+                <h3 class="text-center">Searchkit</h3>
+                <p class="lead">
+                  The frontend utilized many elements from searchkit, an elasticsearch UI framework based on React.js.
+                  We chose searchkit because it gave us a substantial headstart in the development of the UI.
+                  It is easy to use and extremely customizable.
+                  We were able to build an extremely interactive application which allows the user to do faceted search and input search.
+                  A custom rescore query component allows the results to be re-ranked based on the LETOR algorithm.
+                  Various event handlers were also present to assist in the recording of clickstream data.
+                </p>
+            </div>
+            <div class="row">
+                <h3 class="text-center">Demonstration</h3>
+                <div id="carousel-demo" class="carousel slide" data-ride="carousel">
+                  <!-- Indicators -->
+                  <ol class="carousel-indicators">
+                    <li data-target="#carousel-demo" data-slide-to="0" class="active"></li>
+                    <li data-target="#carousel-demo" data-slide-to="1"></li>
+                    <li data-target="#carousel-demo" data-slide-to="2"></li>
+                  </ol>
+
+                  <!-- Wrapper for slides -->
+                  <div class="carousel-inner">
+                    <div class="item active">
+                      <img src="/static/img/web/demo-1.png" class="img-responsive center-block" alt="Web Demo 1">
+                    </div>
+                    <div class="item">
+                      <img src="/static/img/web/demo-2.png" class="img-responsive center-block" alt="Web Demo 2">
+                    </div>
+                    <div class="item">
+                      <img src="/static/img/web/demo-3.png" class="img-responsive center-block" alt="Web Demo 3">
+                    </div>
+                  </div>
+
+                  <!-- Controls -->
+                  <a class="left carousel-control" href="#carousel-demo" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                  </a>
+                  <a class="right carousel-control" href="#carousel-demo" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                  </a>
+                </div> <!-- Carousel -->
+                <ol class="lead">
+                  <li>User input form.</li>
+                  <li>Autocomplete for medical conditions (scraped from drugs.com).</li>
+                  <li>Left: filters ordered by importance. Right: insurance plans.</li>
+                </ol>
+              </div>
+        </div>
+        <!-- /.container -->
+    </div>
+
+  <a name="letor"></a>
+    <div class="content-section-a">
+        <div class="container">
+            <div class="row">
                 <div class="col-md-8 col-md-offset-2">
-                    <h2 class="section-heading">Web Development</h2>
+                    <h2 class="section-heading">Learn to Rank</h2>
                 </div>
             </div>
             <div class="row">
@@ -168,12 +232,12 @@
         <!-- /.container -->
     </div>
 
-  <a name="letor"></a>
-    <div class="content-section-a">
+  <a name="next"></a>
+    <div class="content-section-b">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
-                    <h2 class="section-heading">LETOR</h2>
+                    <h2 class="section-heading">Next Steps</h2>
                 </div>
             </div>
             <div class="row">
@@ -188,7 +252,7 @@
     </div>
 
   <a name="team"></a>
-    <div class="content-section-b">
+    <div class="content-section-a">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
@@ -228,15 +292,15 @@
                         </li>
                         <li class="footer-menu-divider">&sdot;</li>
                         <li>
-                            <a href="#elastic">Elasticsearch</a>
-                        </li>
-                        <li class="footer-menu-divider">&sdot;</li>
-                        <li>
                             <a href="#web">Web</a>
                         </li>
                         <li class="footer-menu-divider">&sdot;</li>
                         <li>
                             <a href="#letor">Letor</a>
+                        </li>
+                        <li class="footer-menu-divider">&sdot;</li>
+                        <li>
+                            <a href="#next">Next</a>
                         </li>
                         <li class="footer-menu-divider">&sdot;</li>
                         <li>
