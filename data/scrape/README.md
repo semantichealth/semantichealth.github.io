@@ -1,7 +1,7 @@
 # Scrape (Drugs data, Geocodes & Provider Ratings) 
 
 Some form of Website scraping and or REST API calls were employed during the project for a number of reasons:
- 
+
 * Drugs and assiociated Diseases/Conditions
 * Geo-coding on over a million provider addresses
 * Provider ratings (Yelp, HealthGrades, Vitals , UcompareHealthcare)
@@ -14,10 +14,16 @@ Includes scripts for scraping from Centerwatch.com and Drugs.com. Also additiona
 
 ## Geo-coding on over a million provider addresses
 
-Includes scripts to - pull geocodes from three different sources (SamartyStreets, Google and Geopy's Nominatim module), push scraped geocodes to MongoDB, Lookup provider name and associated Geo codes for a given Plan (used for Providers Nearby feature)
+* Includes scripts to - pull geocodes from three different sources:
+..* [SamartyStreets](https://smartystreets.com/docs/us-street-api#http-request-url)
+..* [geocder.google](http://geocoder.readthedocs.io/) and 
+..* [geopy Nominatim](https://github.com/geopy/geopy) 
+
+* Push scraped geocodes to MongoDB
+* Lookup provider name and associated Geo codes for a given Plan (used for Providers Nearby feature)
 
 
-## Provider ratings (Yelp, HealthGrades, Vitals , UcompareHealthcare)
+## Provider ratings from ([Yelp](http://www.yelp.com), [HealthGrades](http://www.healthgrades.com), [Vitals]http://www.vitals.com) , [UcompareHealthcare](http://www.ucomparehealthcare.com))
 
 Code for scraping Provider Ratings were forked from [PCPInvestigator - by Tory Hoke](https://github.com/AteYourLembas/PCPInvestigator). Changes were made to three of the scrapers to accomdate new changes to the respective rating websites. Addtional code changes generating scraped results in Json files for ingestion to MongoDb/Elastic Search.
 
