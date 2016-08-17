@@ -6,7 +6,7 @@
 - **Online prediction:** called by ElasticSearch to incorporate LETOR ranking with local search results
 
 ###Data Flow
-![alt tag](https://github.com/leiyang-mids/aca_letor/blob/master/ACA%20LETOR%20Data%20Flow.jpg)
+![alt tag](data_flow.jpg)
 
 ###Use Cases
 ![alt tag](https://github.com/semantichealth/semantichealth.github.io/blob/master/letor/doc/example1.jpg)
