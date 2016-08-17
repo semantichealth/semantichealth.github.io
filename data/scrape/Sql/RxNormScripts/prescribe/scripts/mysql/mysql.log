@@ -1,0 +1,180 @@
+----------------------------------------
+Starting ... Mon Jul  4 01:39:14 PDT 2016
+----------------------------------------
+MYSQL_HOME= 
+user =       
+db_name =    
+    Create and load tables ... Mon Jul  4 01:39:14 PDT 2016
+--------------
+DROP  TABLE IF EXISTS RXNCONSO
+--------------
+
+Query OK, 0 rows affected, 1 warning (0.01 sec)
+
+--------------
+CREATE TABLE RXNCONSO
+(
+   RXCUI             varchar(8) NOT NULL,
+   LAT               varchar (3) DEFAULT 'ENG' NOT NULL,
+   TS                varchar (1),
+   LUI               varchar(8),
+   STT               varchar (3),
+   SUI               varchar (8),
+   ISPREF            varchar (1),
+   RXAUI             varchar(8) NOT NULL,
+   SAUI              varchar (50),
+   SCUI              varchar (50),
+   SDUI              varchar (50),
+   SAB               varchar (20) NOT NULL,
+   TTY               varchar (20) NOT NULL,
+   CODE              varchar (50) NOT NULL,
+   STR               varchar (3000) NOT NULL,
+   SRL               varchar (10),
+   SUPPRESS          varchar (1),
+   CVF               varchar(50)
+)
+--------------
+
+Query OK, 0 rows affected (0.01 sec)
+
+--------------
+DROP TABLE IF EXISTS RXNREL
+--------------
+
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+--------------
+CREATE TABLE RXNREL
+(
+   RXCUI1    varchar(8) ,
+   RXAUI1    varchar(8),
+   STYPE1    varchar(50),
+   REL       varchar(4) ,
+   RXCUI2    varchar(8) ,
+   RXAUI2    varchar(8),
+   STYPE2    varchar(50),
+   RELA      varchar(100) ,
+   RUI       varchar(10),
+   SRUI      varchar(50),
+   SAB       varchar(20) NOT NULL,
+   SL        varchar(1000),
+   DIR       varchar(1),
+   RG        varchar(10),
+   SUPPRESS  varchar(1),
+   CVF       varchar(50)
+)
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+DROP TABLE IF EXISTS RXNSAT
+--------------
+
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+--------------
+CREATE TABLE RXNSAT
+(
+   RXCUI            varchar(8) ,
+   LUI              varchar(8),
+   SUI              varchar(8),
+   RXAUI            varchar(8),
+   STYPE            varchar (50),
+   CODE             varchar (50),
+   ATUI             varchar(11),
+   SATUI            varchar (50),
+   ATN              varchar (1000) NOT NULL,
+   SAB              varchar (20) NOT NULL,
+   ATV              varchar (4000),
+   SUPPRESS         varchar (1),
+   CVF              varchar (50)
+)
+--------------
+
+Query OK, 0 rows affected (0.01 sec)
+
+Bye
+    Load Data ... Mon Jul  4 01:39:14 PDT 2016
+--------------
+load data local infile 'RXNCONSO.RRF' into table RXNCONSO fields terminated by '|' 
+ESCAPED BY 'ä'
+lines terminated by '\n'
+(@rxcui,@lat,@ts,@lui,@stt,@sui,@ispref,@rxaui,@saui,@scui,@sdui,@sab,@tty,@code,@str,@srl,@suppress,@cvf)
+SET rxcui =@rxcui,
+    lat =@lat,
+    ts =@ts,
+    lui =@lui,
+    stt =@stt,
+    sui =@sui,
+    ispref =@ispref,
+    rxaui =@rxaui,
+    saui =@saui,
+    scui =@scui,
+    sdui =@sdui,
+    sab =@sab,
+    tty =@tty,
+    code =@code,
+    str =@str,
+    srl =@srl,
+    suppress=@suppress,
+    cvf=@cvf
+--------------
+
+Query OK, 226645 rows affected, 1 warning (2.70 sec)
+Records: 226645  Deleted: 0  Skipped: 0  Warnings: 1
+
+--------------
+load data local infile 'RXNREL.RRF' into table RXNREL fields terminated by '|' 
+ESCAPED BY 'ä'
+lines terminated by '\n'
+(@rxcui1,@rxaui1,@stype1,@rel,@rxcui2,@rxaui2,@stype2,@rela,@rui,@srui,@sab,@sl,@rg,@dir,@suppress,@cvf)
+SET rxcui1 =@rxcui1,
+    rxaui1 =@rxaui1,
+    stype1 =@stype1,
+    rel =@rel,
+    rxcui2 =@rxcui2,
+    rxaui2 =@rxaui2,
+    stype2 =@stype2,
+    rela =@rela,
+    rui=@rui,
+    srui=@srui,
+    sab =@sab,
+    sl =@sl,
+    rg=@rg,
+    dir=@dir,
+    suppress=@suppress,
+    cvf=@cvf
+--------------
+
+Query OK, 2235989 rows affected, 1 warning (20.73 sec)
+Records: 2235989  Deleted: 0  Skipped: 0  Warnings: 1
+
+--------------
+load data local infile 'RXNSAT.RRF' into table RXNSAT fields terminated by '|' 
+ESCAPED BY 'ä'
+lines terminated by '\n'
+(@rxcui,@lui,@sui,@rxaui,@stype,@code,@atui,@satui,@atn,@sab,@atv,@suppress,@cvf)
+SET rxcui=@rxcui,
+    lui =@lui,
+    sui =@sui,
+    rxaui=@rxaui,
+    stype =@stype,
+    code =@code,
+    atui =@atui,
+    satui =@satui,
+    atn =@atn,
+    sab=@sab,
+    atv =@atv,
+    suppress =@suppress,
+    cvf =@cvf
+--------------
+
+Query OK, 2799304 rows affected, 1 warning (26.19 sec)
+Records: 2799304  Deleted: 0  Skipped: 0  Warnings: 1
+
+Bye
+----------------------------------------
+Completed without errors.
+Finished ... Mon Jul  4 01:40:04 PDT 2016
+----------------------------------------

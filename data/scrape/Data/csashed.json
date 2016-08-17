@@ -1,0 +1,19 @@
+[{
+	"code": "N",
+	"description": "The drug is not subject to the Controlled Substances Act."
+}, {
+	"code": "1",
+	"description": "The drug has a high potential for abuse. The drug has no currently accepted medical use in treatment in the United States. There is a lack of accepted safety for use of the drug under medical supervision."
+}, {
+	"code": "2",
+	"description": "The drug has a high potential for abuse. The drug has a currently accepted medical use in treatment in the United States or a currently accepted medical use with severe restrictions. Abuse of the drug may lead to severe psychological or physical dependence."
+}, {
+	"code": "3",
+	"description": "The drug has a potential for abuse less than the drugs in schedules 1 and 2. The drug has a currently accepted medical use in treatment in the United States. Abuse of the drug may lead to moderate or low physical dependence or high psychological dependence."
+}, {
+	"code": "4",
+	"description": "The drug has a low potential for abuse relative to the drugs in schedule 3. The drug has a currently accepted medical use in treatment in the United States. Abuse of the drug may lead to limited physical dependence or psychological dependence relative to the drugs in schedule 3."
+}, {
+	"code": "5",
+	"description": "The drug has a low potential for abuse relative to the drugs in schedule 4. The drug has a currently accepted medical use in treatment in the United States. Abuse of the drug may lead to limited physical dependence or psychological dependence relative to the drugs in schedule 4."
+}]

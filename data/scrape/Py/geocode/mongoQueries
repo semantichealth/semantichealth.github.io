@@ -1,0 +1,27 @@
+- Collection of Mongo Queries for GeoCodes
+
+
+db.getCollection('providers').find({"_id":1, "npi":1, "name.first":1, "name.last":1, "speciality":1, "addresses.address:1", "address.state":1, "address.city":1, "address.state":1, "address.zip":1 })
+
+db.getCollection('providers').find({"npi":1, "name.first":1, "name.last":1, "speciality":1, "addresses.address":1, "address.state":1, "address.city":1, "address.state":1, "address.zip":1 }) 
+
+db.getCollection('providers').find({},{"npi":1, "name.first":1, "name.last":1, "speciality":1, "addresses.address":1, "addresses.state":1, "addresses.city":1, "addresses.state":1, "addresses.zip":1})
+
+db.getCollection('providers').find({},
+{   "npi":1, 
+    "name.first":1, 
+    "name.last":1, 
+    "speciality":1,
+    "addresses.address":1, 
+    "addresses.state":1, 
+    "addresses.city":1, 
+    "addresses.state":1, 
+    "addresses.zip":1 
+})
+
+db.getCollection('providers').find({"addresses.state":"SD", "addresses.zip": "57106", "plans.plan_id":"76168DE0390001"})
+
+db.getCollection('providers').find(
+		{"addresses.state":"SD", "addresses.zip": "57106", "plans.plan_id":"76168DE0390001", "addresses.geo": { '$exists': true, '$ne': [] } },
+		{"name.first":1, "name.last":1,  "addresses":"geo" }
+	)  

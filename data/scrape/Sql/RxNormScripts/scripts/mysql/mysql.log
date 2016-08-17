@@ -1,0 +1,448 @@
+----------------------------------------
+Starting ... Mon Jul  4 00:20:20 PDT 2016
+----------------------------------------
+MYSQL_HOME= 
+user =       
+db_name =    
+    Create and load tables ... Mon Jul  4 00:20:20 PDT 2016
+--------------
+DROP  TABLE IF EXISTS RXNATOMARCHIVE
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+CREATE TABLE RXNATOMARCHIVE
+(
+   RXAUI             varchar(8) NOT NULL,
+   AUI               varchar(10),
+   STR               varchar(4000) NOT NULL,
+   ARCHIVE_TIMESTAMP varchar(280) NOT NULL,
+   CREATED_TIMESTAMP varchar(280) NOT NULL,
+   UPDATED_TIMESTAMP varchar(280) NOT NULL,
+   CODE              varchar(50),
+   IS_BRAND          varchar(1),
+   LAT               varchar(3),
+   LAST_RELEASED     varchar(30),
+   SAUI              varchar(50),
+   VSAB              varchar(40),
+   RXCUI             varchar(8),
+   SAB               varchar(20),
+   TTY               varchar(20),
+   MERGED_TO_RXCUI   varchar(8)
+)
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+DROP  TABLE IF EXISTS RXNCONSO
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+CREATE TABLE RXNCONSO
+(
+   RXCUI             varchar(8) NOT NULL,
+   LAT               varchar (3) DEFAULT 'ENG' NOT NULL,
+   TS                varchar (1),
+   LUI               varchar(8),
+   STT               varchar (3),
+   SUI               varchar (8),
+   ISPREF            varchar (1),
+   RXAUI             varchar(8) NOT NULL,
+   SAUI              varchar (50),
+   SCUI              varchar (50),
+   SDUI              varchar (50),
+   SAB               varchar (20) NOT NULL,
+   TTY               varchar (20) NOT NULL,
+   CODE              varchar (50) NOT NULL,
+   STR               varchar (3000) NOT NULL,
+   SRL               varchar (10),
+   SUPPRESS          varchar (1),
+   CVF               varchar(50)
+)
+--------------
+
+Query OK, 0 rows affected (0.01 sec)
+
+--------------
+DROP TABLE IF EXISTS RXNREL
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+CREATE TABLE RXNREL
+(
+   RXCUI1    varchar(8) ,
+   RXAUI1    varchar(8),
+   STYPE1    varchar(50),
+   REL       varchar(4) ,
+   RXCUI2    varchar(8) ,
+   RXAUI2    varchar(8),
+   STYPE2    varchar(50),
+   RELA      varchar(100) ,
+   RUI       varchar(10),
+   SRUI      varchar(50),
+   SAB       varchar(20) NOT NULL,
+   SL        varchar(1000),
+   DIR       varchar(1),
+   RG        varchar(10),
+   SUPPRESS  varchar(1),
+   CVF       varchar(50)
+)
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+DROP TABLE IF EXISTS RXNSAB
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+CREATE TABLE RXNSAB
+(
+   VCUI           varchar (8),
+   RCUI           varchar (8),
+   VSAB           varchar (40),
+   RSAB           varchar (20) NOT NULL,
+   SON            varchar (3000),
+   SF             varchar (20),
+   SVER           varchar (20),
+   VSTART         varchar (10),
+   VEND           varchar (10),
+   IMETA          varchar (10),
+   RMETA          varchar (10),
+   SLC            varchar (1000),
+   SCC            varchar (1000),
+   SRL            integer,
+   TFR            integer,
+   CFR            integer,
+   CXTY           varchar (50),
+   TTYL           varchar (300),
+   ATNL           varchar (1000),
+   LAT            varchar (3),
+   CENC           varchar (20),
+   CURVER         varchar (1),
+   SABIN          varchar (1),
+   SSN            varchar (3000),
+   SCIT           varchar (4000)
+)
+--------------
+
+Query OK, 0 rows affected (0.01 sec)
+
+--------------
+DROP TABLE IF EXISTS RXNSAT
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+CREATE TABLE RXNSAT
+(
+   RXCUI            varchar(8) ,
+   LUI              varchar(8),
+   SUI              varchar(8),
+   RXAUI            varchar(9),
+   STYPE            varchar (50),
+   CODE             varchar (50),
+   ATUI             varchar(11),
+   SATUI            varchar (50),
+   ATN              varchar (1000) NOT NULL,
+   SAB              varchar (20) NOT NULL,
+   ATV              varchar (4000),
+   SUPPRESS         varchar (1),
+   CVF              varchar (50)
+)
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+DROP TABLE IF EXISTS RXNSTY
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+CREATE TABLE RXNSTY
+(
+   RXCUI          varchar(8) NOT NULL,
+   TUI            varchar (4),
+   STN            varchar (100),
+   STY            varchar (50),
+   ATUI           varchar (11),
+   CVF            varchar (50)
+)
+--------------
+
+Query OK, 0 rows affected (0.01 sec)
+
+--------------
+DROP TABLE IF EXISTS RXNDOC
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+CREATE TABLE RXNDOC (
+    DOCKEY      varchar(50) NOT NULL,
+    VALUE       varchar(1000),
+    TYPE        varchar(50) NOT NULL,
+    EXPL        varchar(1000)
+)
+--------------
+
+Query OK, 0 rows affected (0.04 sec)
+
+--------------
+DROP  TABLE IF EXISTS  RXNCUICHANGES
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+CREATE TABLE RXNCUICHANGES
+(
+      RXAUI         varchar(8),
+      CODE          varchar(50),
+      SAB           varchar(20),
+      TTY           varchar(20),
+      STR           varchar(3000),
+      OLD_RXCUI     varchar(8) NOT NULL,
+      NEW_RXCUI     varchar(8) NOT NULL
+)
+--------------
+
+Query OK, 0 rows affected (0.01 sec)
+
+--------------
+DROP  TABLE IF EXISTS  RXNCUI
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+CREATE TABLE RXNCUI (
+ cui1 VARCHAR(8),
+ ver_start VARCHAR(40),
+ ver_end   VARCHAR(40),
+ cardinality VARCHAR(8),
+ cui2       VARCHAR(8) 
+)
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+Bye
+    Load Data ... Mon Jul  4 00:20:20 PDT 2016
+--------------
+load data local infile 'RXNATOMARCHIVE.RRF' into table RXNATOMARCHIVE fields terminated by '|' 
+ESCAPED BY 'ä'
+lines terminated by '\n'
+(@rxaui,@aui,@str,@archive_timestamp,@created_timestamp,@updated_timestamp,@code,@is_brand,@lat,@last_released,@saui,@vsab,@rxcui,@sab,@tty,@merged_to_rxcui)
+SET rxaui =@rxaui,
+    aui =@aui,
+    str =@str,
+    archive_timestamp =@archive_timestamp,
+    created_timestamp =@created_timestamp,
+    updated_timestamp =@updated_timestamp,
+    code =@code,
+    is_brand =@is_brand,
+    lat =@lat,
+    last_released =@last_released,
+    saui =@saui,
+    vsab =@vsab,
+    rxcui =@rxcui,
+    sab =@sab,
+    tty =@tty,
+    merged_to_rxcui =@merged_to_rxcui
+--------------
+
+Query OK, 175965 rows affected, 1 warning (3.20 sec)
+Records: 175965  Deleted: 0  Skipped: 0  Warnings: 1
+
+--------------
+load data local infile 'RXNCONSO.RRF' into table RXNCONSO fields terminated by '|' 
+ESCAPED BY 'ä'
+lines terminated by '\n'
+(@rxcui,@lat,@ts,@lui,@stt,@sui,@ispref,@rxaui,@saui,@scui,@sdui,@sab,@tty,@code,@str,@srl,@suppress,@cvf)
+SET rxcui =@rxcui,
+    lat =@lat,
+    ts =@ts,
+    lui =@lui,
+    stt =@stt,
+    sui =@sui,
+    ispref =@ispref,
+    rxaui =@rxaui,
+    saui =@saui,
+    scui =@scui,
+    sdui =@sdui,
+    sab =@sab,
+    tty =@tty,
+    code =@code,
+    str =@str,
+    srl =@srl,
+    suppress=@suppress,
+    cvf=@cvf
+--------------
+
+Query OK, 1068923 rows affected, 1 warning (14.24 sec)
+Records: 1068923  Deleted: 0  Skipped: 0  Warnings: 1
+
+--------------
+load data local infile 'RXNREL.RRF' into table RXNREL fields terminated by '|' 
+ESCAPED BY 'ä'
+lines terminated by '\n'
+(@rxcui1,@rxaui1,@stype1,@rel,@rxcui2,@rxaui2,@stype2,@rela,@rui,@srui,@sab,@sl,@rg,@dir,@suppress,@cvf)
+SET rxcui1 =@rxcui1,
+    rxaui1 =@rxaui1,
+    stype1 =@stype1,
+    rel =@rel,
+    rxcui2 =@rxcui2,
+    rxaui2 =@rxaui2,
+    stype2 =@stype2,
+    rela =@rela,
+    rui=@rui,
+    srui=@srui,
+    sab =@sab,
+    sl =@sl,
+    rg=@rg,
+    dir=@dir,
+    suppress=@suppress,
+    cvf=@cvf
+--------------
+
+Query OK, 6169694 rows affected, 1 warning (56.01 sec)
+Records: 6169694  Deleted: 0  Skipped: 0  Warnings: 1
+
+--------------
+load data local infile 'RXNSAB.RRF' into table RXNSAB fields terminated by '|' 
+ ESCAPED BY 'ä' 
+ lines terminated by '\n'
+(@vcui,@rcui,@vsab,@rsab,@son,@sf,@sver,@vstart,@vend,@imeta,@rmeta,@slc,@scc,@srl,@tfr,@cfr,@cxty,@ttyl,@atnl,@lat,@cenc,@curver,@sabin,@ssn,@scit)
+SET vcui =@vcui,
+    rcui =@rcui,
+    vsab =@vsab,
+    rsab=@rsab,
+    son=@son,
+    sf=@sf,
+    sver=@sver,
+    vstart=@vstart,
+    vend=@vend,
+    imeta=@imeta,
+    rmeta=@rmeta,
+    slc=@slc,
+    scc=@scc,
+    srl=nullif(@srl,''),
+    tfr=nullif(@tfr,''),
+    cfr=nullif(@cfr,''),
+    cxty=@cxty,
+    ttyl=@ttyl,
+    atnl=@atnl,
+    lat=@lat,
+    cenc=@cenc,
+    curver=@curver,
+    sabin=@sabin,
+    ssn=@ssn,
+    scit=@scit
+--------------
+
+Query OK, 15 rows affected, 1 warning (0.01 sec)
+Records: 15  Deleted: 0  Skipped: 0  Warnings: 1
+
+--------------
+load data local infile 'RXNSAT.RRF' into table RXNSAT fields terminated by '|' 
+ESCAPED BY 'ä'
+lines terminated by '\n'
+(@rxcui,@lui,@sui,@rxaui,@stype,@code,@atui,@satui,@atn,@sab,@atv,@suppress,@cvf)
+SET rxcui=@rxcui,
+    lui =@lui,
+    sui =@sui,
+    rxaui=@rxaui,
+    stype =@stype,
+    code =@code,
+    atui =@atui,
+    satui =@satui,
+    atn =@atn,
+    sab=@sab,
+    atv =@atv,
+    suppress =@suppress,
+    cvf =@cvf
+--------------
+
+Query OK, 7664977 rows affected, 1 warning (1 min 5.39 sec)
+Records: 7664977  Deleted: 0  Skipped: 0  Warnings: 1
+
+--------------
+load data local infile 'RXNSTY.RRF' into table RXNSTY fields terminated by '|' 
+ESCAPED BY 'ä'
+lines terminated by '\n'
+(@rxcui,@tui,@stn,@sty,@atui,@cvf)
+SET rxcui=@rxcui,
+    tui =@tui,
+    stn =@stn,
+    sty =@sty,
+    atui=@atui,
+    cvf =@cvf
+--------------
+
+Query OK, 414505 rows affected, 1 warning (2.31 sec)
+Records: 414505  Deleted: 0  Skipped: 0  Warnings: 1
+
+--------------
+load data local infile 'RXNDOC.RRF' into table RXNDOC fields terminated by '|' 
+ESCAPED BY 'ä'
+lines terminated by '\n'
+(@dockey,@value,@type,@expl)
+SET dockey=@dockey,
+    value =@value,
+    type =@type,
+    expl =@expl
+--------------
+
+Query OK, 2889 rows affected, 1 warning (0.03 sec)
+Records: 2889  Deleted: 0  Skipped: 0  Warnings: 1
+
+--------------
+load data local infile 'RXNCUICHANGES.RRF' into table RXNCUICHANGES fields terminated by '|' 
+ESCAPED BY 'ä'
+lines terminated by '\n'
+(@rxaui,@code,@sab,@tty,@str,@old_rxcui,@new_rxcui)
+SET rxaui=@rxaui,
+    code =@code,
+    sab =@sab,
+    tty =@tty,
+    str =@str,
+    old_rxcui =@old_rxcui,
+    new_rxcui =@new_rxcui
+--------------
+
+Query OK, 2617 rows affected, 1 warning (0.06 sec)
+Records: 2617  Deleted: 0  Skipped: 0  Warnings: 1
+
+--------------
+load data local infile 'RXNCUI.RRF' into table RXNCUI fields terminated by '|'
+ESCAPED BY 'ä'
+lines terminated by '\n'
+(@cui1,@ver_start,@ver_end,@cardinality,@cui2)
+SET cui1=@cui1,
+    ver_start =@ver_start,
+    ver_end =@ver_end,
+    cardinality =@cardinality,
+    cui2 =@cui2
+--------------
+
+Query OK, 22530 rows affected, 1 warning (0.14 sec)
+Records: 22530  Deleted: 0  Skipped: 0  Warnings: 1
+
+Bye
+----------------------------------------
+Completed without errors.
+Finished ... Mon Jul  4 00:22:41 PDT 2016
+----------------------------------------
