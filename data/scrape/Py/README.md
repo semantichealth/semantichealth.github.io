@@ -1,4 +1,4 @@
-# scrape - Python Scripts
+# Scrape - Python Scripts
 
 **Note**: Please see summary description inside each script for additional details.
 
@@ -7,9 +7,3 @@
 
 ### geocode
   * Contains various scripts used to prepare for and pull geocodes
-
-
-
-
-
-

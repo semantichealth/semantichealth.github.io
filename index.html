@@ -421,7 +421,8 @@
                 <h3 class="text-center">Data Processing Flow</h3>
                 <br>
                 <img src="data/ingest/data_ingest_diagram.png" class="img-responsive center-block" alt="Data Ingest Processing Flow">
-                <h3>Data Acquisition</h3>
+                <br>
+                <h3 class="text-center">Data Acquisition</h3>
 
                 <p class="lead">
                     The <em>Machine Readable Data Processor</em> traverses the links of the Machine Readable PUF to download JSON files for the Provider,
@@ -429,7 +430,7 @@
                     which makes it easier to re-ingest the data as needed. The Machine Readable URL PUF contains approximately 36K URLs
                     that must be followed to get all the data for all the states that participate in the national ACA exchange at Healthcare.gov.
                     The JSON files themselves range in size from a few hundred kilobbytes to several gigabytes each.
-                <p>
+                </p>
                 <p class="lead">
                     The <em>Extended Data Processor</em> processes a number of other data sources from <a href="https://www.cms.gov">CMS.gov</a> to augment the core Plan, Provider,
                     and Formulary data such as rate information, detailed plan attributes, co-pay and cost schedules. Logo URLs and drug
@@ -450,6 +451,69 @@
                 <p class="lead">
                     The <em>Plan Rank Updater</em> process runs every 3 hours to update the plan documents in the Elasticsearch index
                     with the latest LETOR ranking data.
+                </p>
+            </div>
+            <div class="row">
+                <h3 class="text-center"><a href="https://github.com/semantichealth/semantichealth.github.io/tree/master/data/scrape">Data Scraping</a></h3>
+                
+                <p class="lead">
+                    Besides the main data source used for the SemanticHealth project, from <a href="https://www.cms.gov/CCIIO/Resources/Data-Resources/marketplace-puf.html">CMS.gov Healthcare MarketPlace Data Sets</a>, we collected additional external data sets to further enhance search functionality and thereby improve overall user experience. Three of the external data sets we focused on were:
+                </p>   
+                <p class="lead">
+                    <em>Drugs and associated Diseases/Conditions</em> : This will allow users to search for plans by specific disease or condition they have. This is also used for auto-complete when user has to enter Disese name.
+                </p>
+                <p class="lead">
+                    <em>Geo-coding on over a million provider addresses</em> : This will allow users to look up Providers that are near-by, based on the plan they selected.
+                </p>
+                <p class="lead">
+                    <em>Provider ratings (Yelp, HealthGrades, Vitals , UcompareHealthcare)</em> : This data would enhance Learning and Ranking based on existing provider ratings (Note: We were not able to fully collect Provider Ratings due to some technical limitations we ran into - discussed below)
+                </p>
+
+                <h4><a href="https://github.com/semantichealth/semantichealth.github.io/tree/master/data/scrape/Py/drugscrape">Drugs and associated Diseases/Conditions</a></h4>
+
+                <p class="lead">
+                    Drugs, Associated Conditions were scraped from following sources:
+                </p>
+                
+                <ol class="lead" style="list-style-type:none">
+                    <li><a href="http://www.centerwatch.com/drug-information/fda-approved-drugs/medical-conditions/">www.centerwatch.com</a></li>
+                    <li><a href="https://www.drugs.com/medical_conditions.html">www.drugs.com</a></li>
+                </ol>
+
+                <p class="lead">
+                    Data from Drugs.com was more comprehensive and included additional information related to impact of the drug on Pregnancy, Controlled Substance Abuse potential, Alcohol impact etc. These additional data elements can eventually be used to enhance Plan Search and provides additional features that can be used for LETOR or other Learning Algorithms.
+                </p>
+
+                <h4><a href="https://github.com/semantichealth/semantichealth.github.io/tree/master/data/scrape/Py/geocode">Geo-Locatins for over a Million provider addresses</a></h4>
+                <p class="lead">
+                    Pulling Geocodes for over a millon providers proved to be a significant challenge at first. Most data sources and APIs out there had daily limitation on the number of free Geo pulls and additional pulls were prohibitively expensive, at least for the purposes of this project. In the end we were very excited that SmartyStreets (Thank you Jefferson!) offered to support our project by providing an unlimited pull license which we eventually used, to pull Geo Locations for over a million plus providers.
+                </p>
+                <p class="lead">
+                    We use three different APIs to pull Geo Locations in a waterfall like method from three different sources listed below. Eventually those that return empty are saved separately to re-try at a later time.
+                    The three Sources we used for Geo Locations are:
+                </p>
+                    <ol class="lead" style="list-style-type:none">
+                        <li><a href="https://smartystreets.com/docs/us-street-api#http-request-url">SmartyStreets</a></li>
+                        <li><a href="http://geocoder.readthedocs.io/">geocder.google</a></li>
+                        <li><a href="https://github.com/geopy/geopy/">geopy Nominatim</a></li>
+                    </ol>
+                
+                <h4><a href="https://github.com/semantichealth/semantichealth.github.io/tree/master/data/scrape/PCPInvestigator">Provider Ratings</a></h4>
+                <p class="lead">
+                    Provider Ratings were scraped using project forked from <a href="https://github.com/AteYourLembas/PCPInvestigator">PCPInvestigator, written by Tory Hoke</a>.
+                </p>
+                
+                <p class="lead">
+                    The PCPInvestigator supports scraping from four different Health Care Provider rating sites:
+                </p>
+                <ol class="lead" style="list-style-type:none">
+                    <li><a href="http://www.yelp.com">Yelp</a></li>
+                    <li><a href="http://www.healthgrades.com">HealthGrades</a></li>
+                    <li><a href="http://www.vitals.com">Vitals</a></li>
+                    <li><a href="http://www.ucomparehealthcare.com">UcompareHealthcare</a></li>
+                </ol>
+                <p class="lead">
+                    Although the code is functional and tested, it has one major limitation with running on a large set of providers - the code uses Google to do a search and then scrapes the search results for any mention from one of the rating sites and then crawls the specific rating websites. Even with randomizing request headers and timing between request, search results returned 403 errors, mostly from Google blocking IP calls. So we were not able to fully use Provider ratings.
                 </p>
             </div>
             <div class="row">
@@ -476,6 +540,7 @@
                 <ul>
                     <li>Virtual machines and network storage for Elasticsearch cluster nodes</li>
                     <li>Virtual machine and network storage for HAProxy</li>
+                    <li>Virtual machines for general Data Scraping</li>
                 </ul>
                 <p>
                 <h3><a href="https://www.postgresql.org/">PostgreSQL RDBMS</a></h3>
@@ -594,7 +659,7 @@
                 </p>
                 <h3>Instructors</h3>
                 <p class="lead">
-                    <b><font color="rgb(68,84,105)">David Steier & Coco Krumme</font></b> : Thank you, for an awesome learning experience during the Capstone Class and also for their invaluable feedback, support and guidance during various stages of the project.
+                    <b><font color="rgb(68,84,105)">David Steier & Coco Krumme</font></b> : Thank you, for an awesome learning experience during the Capstone Class and also for your invaluable feedback, support and guidance during various stages of the project.
                 </p>
                 <p class="lead">
                     <b><font color="rgb(68,84,105)">Jimi Shanahan</font></b> - Thank you Jimi for the motiviation and unwavering support - you showed us how much farther we are able go, and that's just the first mountain!
@@ -610,7 +675,7 @@
                         <b><font color="rgb(68,84,105)">David Portnoy</font></b> : Thank you for showing us just one way out of many we can contribute to make things better for everyone and the support and encouragement during the BayesHack 2016 HHS prompt.
                     </p>
                     <p class="lead">
-                        <b><font color="rgb(68,84,105)">Naama O. Pozniak <a href="https://www.rightplan.com">(Owner @ A+ Insurance Service</a>)</font></b> : Thank you so much for sparing your valuable time to provide us some invaluable insight you provided into real issues people are facing today with ACA/Obamacare. This has helped us tremendously. 
+                        <b><font color="rgb(68,84,105)">Naama O. Pozniak <a href="https://www.rightplan.com">(Owner @ A+ Insurance Service</a>)</font></b> : Thank you so much for the invaluable insight you provided into real issues people are facing today with ACA/Obamacare. This has helped us tremendously. 
                     </p>
 
                 <h3>Tools:</h3>
