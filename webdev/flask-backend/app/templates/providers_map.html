@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Provider Locations</title>
+  <link rel="stylesheet" href="https://npmcdn.com/leaflet@1.0.0-rc.2/dist/leaflet.css" />
+  <link rel="stylesheet" href="/static/css/providers_map.css" >
+</head>
+
+<body>
+  <script type=text/javascript>
+    window.coordinates = {{ response|tojson|safe }};
+  </script>
+
+  <div id="mapid"></div>
+  <!-- Leaflet -->
+  <script src="https://npmcdn.com/leaflet@1.0.0-rc.2/dist/leaflet.js"></script>
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js" integrity="sha256-h0cGsrExGgcZtSZ/fRz4AwV+Nn6Urh/3v3jFRQ0w9dQ=" crossorigin="anonymous"></script>
+  <!-- Providers Map -->
+  <script src="/static/js/providers_map.js"></script>
+</body>
+
+</html>

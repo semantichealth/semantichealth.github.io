@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Searchkit Plans</title>
+  <link href="https://cdn.jsdelivr.net/searchkit/0.10.0/theme.css" rel="stylesheet" />
+</head>
+
+<body>
+  <script type=text/javascript>
+    $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+    window.user_input = {{ response|tojson|safe }};
+  </script>
+  <div id="app"></div>
+  <script src="/static/js/bundle.js"></script>
+
+</body>
+
+</html>
