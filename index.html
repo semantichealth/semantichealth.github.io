@@ -56,13 +56,14 @@
                         <a href="#letor">Letor</a>
                     </li>
                     <li>
+                        <a href="#ingest">Ingest</a>
+                    </li>
+                    <li>
                         <a href="#next">Next</a>
                     </li>
                     <li>
                         <a href="#team">Team</a>
                     </li>
-
-
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -116,13 +117,21 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
-                    <h2 class="section-heading">Data Engineering</h2>
+                    <h2 class="section-heading">Data Sources</h2>
                 </div>
             </div>
             <div class="row">
-              <!-- <div class="col-md-8 col-md-offset-2"> -->
                 <p class="lead">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi in egestas nisl. Suspendisse viverra tortor ante, et efficitur elit ullamcorper nec. Phasellus auctor elit at est hendrerit auctor. Praesent ac est vitae nulla malesuada ultrices. Cras maximus iaculis tincidunt. Proin vel tellus imperdiet, placerat ante a, euismod lectus. Etiam dapibus ligula felis, id posuere orci venenatis venenatis. Nulla vel tempus metus.
+                    Most of the data sources for Semantic Health are comprised of the <b>P</b>ublic <b>U</b>se <b>F</b>iles and data dictionaries
+                    from <a href="https://www.cms.gov/CCIIO/Resources/Data-Resources/marketplace-puf.html">CMS.gov Healthcare Marketplace Data Resources</a>.
+                    The PUF of primary interest is the <a href="http://download.cms.gov/marketplace-puf/2016/machine-readable-url-puf.zip">Machine Readable URL PUF</a>.
+                    The MRURL PUF contains a row for each state and insurance provider with the URL to a JSON file that points to the Plans,
+                    Providers and Formularies. This is the source of the physicians, addresses, plans for which they are in-network and accepting
+                    patients and more. The Formularies contain the drugs that are covered in the plans, and the Plan JSON files contain the plan attributes.
+                    The Machine Readable data constitutes a very broad but shallow tree structure where each branch is like the graph, below.
+
+                    <img src="data/ingest/json_data_structure.png" class="img-responsive center-block" alt="Machine Readable Tree Branch Structure">
+
                 </p>
               <!-- </div> -->
             </div>
@@ -152,7 +161,7 @@
             <div class="row">
                 <h3 class="text-center">Implementation</h3>
                 <img src="/static/img/web/web-tech.png" class="img-responsive center-block" alt="Web Technologies">
-                <h3 class="text-center">Flask</h2>
+                <h3 class="text-center">Flask</h3>
                 <p class="lead">
                   The above schematic shows all the components in our web application.
                   All of the requirements were satisfied by this setup.
@@ -213,7 +222,7 @@
         <!-- /.container -->
     </div>
 
-  <a name="letor"></a>
+    <a name="letor"></a>
     <div class="content-section-a">
         <div class="container">
             <div class="row">
@@ -222,7 +231,7 @@
                 </div>
             </div>
             <div class="row">
-              <!-- <div class="col-md-8 col-md-offset-2"> -->
+                <!-- <div class="col-md-8 col-md-offset-2"> -->
                 <p class="lead">
                     Learn to Rank (LETOR) charaterizes search context for each user query,
                     records click-through rate data (CTR), and builds a ranking model to capture the relationship between
@@ -232,80 +241,134 @@
                     Plan returned by ElasticSearch will be adjusted at runtime by rankings from the similar context
                     previously leanred by LETOR.
                 </p>
-              <!-- </div> -->
+                <!-- </div> -->
             </div>
             <div class="row">
                 <h3 class="text-center">Implementation</h3>
                 <img src="letor/data_flow.jpg" class="img-responsive center-block" alt="Letor Dataflow">
-                <h3 class="text-center"><a href="https://github.com/semantichealth/semantichealth.github.io/tree/master/letor/feature_extraction">Feature Extraction</a></h2>
+                <h3 class="text-center"><a href="https://github.com/semantichealth/semantichealth.github.io/tree/master/letor/feature_extraction">Feature Extraction</a></h3>
                 <ol class="lead">
                     <li>For each plan, features are extracted from 3 data collections from MongoDB: plan, drug, and provider.</li>
                     <li>Two types of feature are evaluated for each data collection: summary statistics of one-hot-encoded
-                    attributes, and binary flag for drug and provider coverage.</li>
+                        attributes, and binary flag for drug and provider coverage.</li>
                     <li>MongoDB aggregation pipeline is executed to extract features from each data collection.</li>
                     <li>Pair-wise difference is calculated with the feature vector as LETOR input according to the CTR
-                    principle: lower ranked clicked plan is more important than higher ranked unclicked plans.</li>
+                        principle: lower ranked clicked plan is more important than higher ranked unclicked plans.</li>
                     <li>Feature vectors are represented by sparse matrix (csr) and stored on S3 for training procedure to use.</li>
                     <li>The extraction process runs ad-hocly when the raw json data is updated.</li>
                 </ol>
-                <h3 class="text-center"><a href="https://github.com/semantichealth/semantichealth.github.io/tree/master/letor/offline">Training</a></h2>
+                <h3 class="text-center"><a href="https://github.com/semantichealth/semantichealth.github.io/tree/master/letor/offline">Training</a></h3>
                 <ol class="lead">
                     <li>A k-mean clustering algorithm with cosine similarity is developed to group search context.</li>
                     <li>Pair-wise feature is evaluated within the ranking of a query.</li>
                     <li>Input features are grouped together from queries in the same search context.</li>
                     <li>A Support Vector Machine (SVM) model is trained for each search context,
-                      and the plans under the context is ranked on the normal direction of max-margin plane given by SVM.</li>
+                        and the plans under the context is ranked on the normal direction of max-margin plane given by SVM.</li>
                     <li>Rank weights for each plan in the context is indexed on ElasticSearch server.</li>
                     <li>K-mean model is saved on S3 for online prediction.</li>
                 </ol>
-                <h3 class="text-center"><a href="https://github.com/semantichealth/semantichealth.github.io/tree/master/letor/online">Ranking</a></h2>
+                <h3 class="text-center"><a href="https://github.com/semantichealth/semantichealth.github.io/tree/master/letor/online">Ranking</a></h3>
                 <ol class="lead">
                     <li>Evaluate incoming query with the search context previously learned by LETOR.</li>
                     <li>No LETOR ranking will be given if the incoming query is brand new.</li>
                     <li>Otherwise a new ranking will be given based on weighted sum from similar search context.</li>
                     <li>LETOR ranking weight, ranging between 0 and 5, will be added to ElasticSearch score,
-                      ranging between 0 and 1, such that higher letor-ranked plan will have bigger score and will be
-                      subsequently ranked higher in the final return.</li>
+                        ranging between 0 and 1, such that higher letor-ranked plan will have bigger score and will be
+                        subsequently ranked higher in the final return.</li>
                 </ol>
             </div>
 
             <div class="row">
                 <h3 class="text-center">Examples</h3>
                 <div id="carousel-letor" class="carousel slide" data-ride="carousel">
-                  <!-- Indicators -->
-                  <ol class="carousel-indicators">
-                    <li data-target="#carousel-letor" data-slide-to="0" class="active"></li>
-                    <li data-target="#carousel-letor" data-slide-to="1"></li>
-                    <li data-target="#carousel-letor" data-slide-to="2"></li>
-                  </ol>
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#carousel-letor" data-slide-to="0" class="active"></li>
+                        <li data-target="#carousel-letor" data-slide-to="1"></li>
+                        <li data-target="#carousel-letor" data-slide-to="2"></li>
+                    </ol>
 
-                  <!-- Wrapper for slides -->
-                  <div class="carousel-inner">
-                    <div class="item active">
-                      <img src="letor/doc/example1.jpg" class="img-responsive center-block" alt="Letor Example 1">
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <img src="letor/doc/example1.jpg" class="img-responsive center-block" alt="Letor Example 1">
+                        </div>
+                        <div class="item">
+                            <img src="letor/doc/example2.jpg" class="img-responsive center-block" alt="Letor Example 2">
+                        </div>
+                        <div class="item">
+                            <img src="letor/doc/example3.jpg" class="img-responsive center-block" alt="Letor Example 3">
+                        </div>
                     </div>
-                    <div class="item">
-                      <img src="letor/doc/example2.jpg" class="img-responsive center-block" alt="Letor Example 2">
-                    </div>
-                    <div class="item">
-                      <img src="letor/doc/example3.jpg" class="img-responsive center-block" alt="Letor Example 3">
-                    </div>
-                  </div>
 
-                  <!-- Controls -->
-                  <a class="left carousel-control" href="#carousel-letor" role="button" data-slide="prev">
-                    <span class="glyphicon glyphicon-chevron-left"></span>
-                  </a>
-                  <a class="right carousel-control" href="#carousel-letor" role="button" data-slide="next">
-                    <span class="glyphicon glyphicon-chevron-right"></span>
-                  </a>
+                    <!-- Controls -->
+                    <a class="left carousel-control" href="#carousel-letor" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                    </a>
+                    <a class="right carousel-control" href="#carousel-letor" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                    </a>
                 </div> <!-- Carousel -->
                 <ol class="lead">
-                  <ol>Example 1: letor captures relation between health and drug coverage.</ol>
-                  <ol>Example 2: letor captures relation between health and provider coverage.</ol>
-                  <ol>Example 3: letor gives rank based on similar search context.</ol>
+                    <ol>Example 1: letor captures relation between health and drug coverage.</ol>
+                    <ol>Example 2: letor captures relation between health and provider coverage.</ol>
+                    <ol>Example 3: letor gives rank based on similar search context.</ol>
                 </ol>
-              </div>
+            </div>
+        </div>
+        <!-- /.container -->
+    </div>
+    <a name="ingest"></a>
+    <div class="content-section-a">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <h2 class="section-heading"><a href="https://github.com/semantichealth/semantichealth.github.io/tree/master/data/ingest">Data Ingest</a></h2>
+                </div>
+            </div>
+            <div class="row">
+                <!-- <div class="col-md-8 col-md-offset-2"> -->
+                <p class="lead">
+                    The data that drives the SemanticHealth.net site is served up by an Elasticsearch cluster. The raw data from
+                    the different data sources is stored and processed before being placed into an index. Healthcare plans are
+                    shown based on the adjusted rankings computed in the cluster.
+                </p>
+                <!-- </div> -->
+            </div>
+            <div class="row">
+                <h3 class="text-center">Data Processing Flow</h3>
+                <img src="data/ingest/data_ingest_diagram.png" class="img-responsive center-block" alt="Data Ingest Processing Flow">
+                <h3>Data Acquisition</h3>
+
+                <p class="lead">
+                    The <em>Machine Readable Data Processor</em> traverses the links of the Machine Readable PUF to download JSON files for the Provider,
+                    Plan and Formularies by state, insuror, and plan. These files are streamed to local files then transferred to S3
+                    which makes it easier to re-ingest the data as needed. The Machine Readable URL PUF contains approximately 36K URLs
+                    that must be followed to get all the data for all the states that participate in the national ACA exchange at Healthcare.gov.
+                    The JSON files themselves range in size from a few hundred kilobbytes to several gigabytes each.
+                <p>
+                <p class="lead">
+                    The <em>Extended Data Processor</em> processes a number of other data sources from <a href="CMS.gov">CMS.gov</a> to augment the core Plan, Provider,
+                    and Formulary data such as rate information, detailed plan attributes, co-pay and cost schedules. Logo URLs and drug
+                    information is scraped from the web and along with the intermediate data sources are stored in a PostgreSQL
+                    database for ease of filtering and selection.
+                </p>
+                <p class="lead">
+                    The <em>JSON Document Processor</em> Tracking tables in a PostgreSQL database are used to track the state of
+                    downloads and processing making it simpler to re-start the process or pick up where left off if an error occurs.
+                    Ultimately the JSON files end up as MongoDB documents which allow for easy querying and augmentation with geo-location
+                    data.
+                </p>
+                <p class="lead">
+                    The <em>Plan Indexer</em> assembles a document for each plan based on queries of the RDBMS and NoSQL databases and
+                    then uses the bulk indexing API to populate the documents for the index. The documents conform to a
+                    <a href="data/elasticsearch/plan_mapping.json">specific mapping</a> to get the best performance for the Elasticsearch queries.
+                </p>
+                <p class="lead">
+                    The <em>Plan Rank Updater</em> process runs every 3 hours to update the plan documents in the Elasticsearch index
+                    with the latest LETOR ranking data.
+                </p>
+            </div>
         </div>
         <!-- /.container -->
     </div>
@@ -375,6 +438,10 @@
                         <li class="footer-menu-divider">&sdot;</li>
                         <li>
                             <a href="#letor">Letor</a>
+                        </li>
+                        <li class="footer-menu-divider">&sdot;</li>
+                        </li>
+                            <a href="#ingest">Ingest</a>
                         </li>
                         <li class="footer-menu-divider">&sdot;</li>
                         <li>
