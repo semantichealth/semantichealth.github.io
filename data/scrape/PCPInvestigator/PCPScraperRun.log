@@ -1,0 +1,417 @@
+------------------------------------------------------------
+*** SEARCHING for [u'Nicholas', u'P', u'Marconi', u'Dr.'] ***
+------------------------------------------------------------
+query Nicholas+P+Marconi+87 main st+essex juction+vt+05452+Optometry+reviews
+Address https://www.google.com/search?q=Nicholas%2BP%2BMarconi%2B87+main+st%2Bessex+juction%2Bvt%2B05452%2BOptometry%2Breviews&num=20&hl=en&start=0
+FOUND POTENTIAL SITES: []
+--------------------------
+*** SAVING results of [] to Nicholas Marconi Dr. ***
+*** DONE SAVING ***
+--------------------------
+------------------------------------------------------------
+------------------------------------------------------------
+*** SEARCHING for [u'Vincent', u'J', u'Devita', u'Dr.'] ***
+------------------------------------------------------------
+query Vincent+J+Devita+100 dorset st ste 25+s burlington+vt+05403+Optometry+reviews
+Address https://www.google.com/search?q=Vincent%2BJ%2BDevita%2B100+dorset+st+ste+25%2Bs+burlington%2Bvt%2B05403%2BOptometry%2Breviews&num=20&hl=en&start=0
+FOUND POTENTIAL SITES: []
+--------------------------
+*** SAVING results of [] to Vincent Devita Dr. ***
+*** DONE SAVING ***
+--------------------------
+------------------------------------------------------------
+------------------------------------------------------------
+*** SEARCHING for [u'Richard', u'Edward', u'Del Bianco', u'Dr.'] ***
+------------------------------------------------------------
+query Richard+Edward+Del Bianco+69 allen street+rutland+vt+05701+Optometry+reviews
+Address https://www.google.com/search?q=Richard%2BEdward%2BDel+Bianco%2B69+allen+street%2Brutland%2Bvt%2B05701%2BOptometry%2Breviews&num=20&hl=en&start=0
+FOUND POTENTIAL SITES: []
+--------------------------
+*** SAVING results of [] to Richard Del Bianco Dr. ***
+*** DONE SAVING ***
+--------------------------
+------------------------------------------------------------
+------------------------------------------------------------
+*** SEARCHING for [u'Karena', u'L', u'Shippee', u'Dr.'] ***
+------------------------------------------------------------
+query Karena+L+Shippee+124 e main st+newport+vt+05855+Optometry+reviews
+Address https://www.google.com/search?q=Karena%2BL%2BShippee%2B124+e+main+st%2Bnewport%2Bvt%2B05855%2BOptometry%2Breviews&num=20&hl=en&start=0
+FOUND POTENTIAL SITES: []
+--------------------------
+*** SAVING results of [] to Karena Shippee Dr. ***
+*** DONE SAVING ***
+--------------------------
+------------------------------------------------------------
+------------------------------------------------------------
+*** SEARCHING for [u'Tiffany', u'D', u'Pincombe', u'Dr.'] ***
+------------------------------------------------------------
+query Tiffany+D+Pincombe+4 laurel hill dr+s burlington+vt+05403+Optometry+reviews
+Address https://www.google.com/search?q=Tiffany%2BD%2BPincombe%2B4+laurel+hill+dr%2Bs+burlington%2Bvt%2B05403%2BOptometry%2Breviews&num=20&hl=en&start=0
+FOUND POTENTIAL SITES: []
+--------------------------
+*** SAVING results of [] to Tiffany Pincombe Dr. ***
+*** DONE SAVING ***
+--------------------------
+------------------------------------------------------------
+------------------------------------------------------------
+*** SEARCHING for [u'Vered', '', u'Sobel', u'Dr.'] ***
+------------------------------------------------------------
+query Vered+Sobel+65 allen st+rutland+vt+05701+Ophthalmology+reviews
+Address https://www.google.com/search?q=Vered%2BSobel%2B65+allen+st%2Brutland%2Bvt%2B05701%2BOphthalmology%2Breviews&num=20&hl=en&start=0
+h3: http://www.vitals.com/doctors/Dr_Vered_Sobel.html
+h3: http://www.vitals.com/doctors/Dr_Vered_Sobel/reviews
+FOUND POTENTIAL SITES: ['vitals', 'vitals']
+SCRAPING SITE vitals via http://www.vitals.com/doctors/Dr_Vered_Sobel.html...
+http://www.vitals.com/doctors/Dr_Vered_Sobel/reviews
+For vitals, comparing [u'vered', u'sobel'] to [u'vered', '', u'sobel']...
+Match!
+found a block of reqviews
+ 6 reviews found
+--------------------------
+vitals RESULTS: [0.7, '', 16]
+--------------------------
+--------------------------
+--------------------------
+*** SAVING results of ['vitals'] to Vered Sobel Dr. ***
+*** DONE SAVING ***
+--------------------------
+------------------------------------------------------------
+------------------------------------------------------------
+*** SEARCHING for [u'NAZEEH', '', u'ABUNASRA', ''] ***
+------------------------------------------------------------
+query NAZEEH+ABUNASRA+62 merchants row+williston+vt+05495+Oral Surgeon+reviews
+Address https://www.google.com/search?q=NAZEEH%2BABUNASRA%2B62+merchants+row%2Bwilliston%2Bvt%2B05495%2BOral+Surgeon%2Breviews&num=20&hl=en&start=0
+FOUND POTENTIAL SITES: []
+--------------------------
+*** SAVING results of [] to NAZEEH ABUNASRA  ***
+*** DONE SAVING ***
+--------------------------
+------------------------------------------------------------
+------------------------------------------------------------
+*** SEARCHING for [u'NAZEEH', u'J', u'ABUNASRA', ''] ***
+------------------------------------------------------------
+query NAZEEH+J+ABUNASRA+3590 w genesee st+syracuse+ny+13219+Oral Surgeon+reviews
+Address https://www.google.com/search?q=NAZEEH%2BJ%2BABUNASRA%2B3590+w+genesee+st%2Bsyracuse%2Bny%2B13219%2BOral+Surgeon%2Breviews&num=20&hl=en&start=0
+FOUND POTENTIAL SITES: []
+--------------------------
+*** SAVING results of [] to NAZEEH ABUNASRA  ***
+*** DONE SAVING ***
+--------------------------
+------------------------------------------------------------
+------------------------------------------------------------
+*** SEARCHING for [u'DRAKE', u'J', u'BATTISTA', ''] ***
+------------------------------------------------------------
+query DRAKE+J+BATTISTA+4 general wing rd+rutland+vt+05701+General Dentist+reviews
+Address https://www.google.com/search?q=DRAKE%2BJ%2BBATTISTA%2B4+general+wing+rd%2Brutland%2Bvt%2B05701%2BGeneral+Dentist%2Breviews&num=20&hl=en&start=0
+h3: http://www.vitals.com/dentists/Dr_Drake_Battista
+h3: http://www.yelp.com/biz/battista-drake-j-dds-rutland
+FOUND POTENTIAL SITES: ['vitals', 'yelp']
+SCRAPING SITE vitals via http://www.vitals.com/dentists/Dr_Drake_Battista...
+http://www.vitals.com/dentists/Dr_Drake_Battista/reviews
+For vitals, comparing [u'drake', u'battista'] to [u'drake', u'j', u'battista']...
+Match!
+--------------------------
+vitals RESULTS: [0.0, '', 0]
+--------------------------
+--------------------------
+SCRAPING SITE yelp via http://www.yelp.com/biz/battista-drake-j-dds-rutland...
+For yelp, comparing 
+            Battista Drake J DDS
+         to [u'drake', u'j', u'battista']...
+Name does not match satisfactorily.
+For yelp, comparing [u'4 general wing rd', u'rutland', u'vt', u'05701'] to [u'4 general wing rd', u'rutland', u'vt', u'05701']...
+Match!
+No rating content found.
+SCRAPE FAILED. PROVIDER MISMATCH OR NO REVIEWS?
+--------------------------
+--------------------------
+*** SAVING results of ['vitals'] to DRAKE BATTISTA  ***
+*** DONE SAVING ***
+
+
+Searching for providers in OR...
+------------------------------------------------------------
+*** SEARCHING for [u'Stacy', u'L', u'Burquist', u'Ms.'] ***
+------------------------------------------------------------
+query Stacy+L+Burquist+3200 providence dr+anchorage+ak+99508+Nurse Practitioner+reviews
+Address https://www.google.com/search?q=Stacy%2BL%2BBurquist%2B3200+providence+dr%2Banchorage%2Bak%2B99508%2BNurse+Practitioner%2Breviews&num=20&hl=en&start=0
+FOUND POTENTIAL SITES: []
+--------------------------
+*** SAVING results of [] to Stacy Burquist Ms. ***
+*** DONE SAVING ***
+--------------------------
+------------------------------------------------------------
+------------------------------------------------------------
+*** SEARCHING for [u'Patrick', '', u'Reber', u'Dr.'] ***
+------------------------------------------------------------
+query Patrick+Reber+1345 w 9th ave+anchorage+ak+99501+Optometry+reviews
+Address https://www.google.com/search?q=Patrick%2BReber%2B1345+w+9th+ave%2Banchorage%2Bak%2B99501%2BOptometry%2Breviews&num=20&hl=en&start=0
+h3: http://www.yelp.com/biz/reber-patrick-n-od-anchorage
+FOUND POTENTIAL SITES: ['yelp']
+SCRAPING SITE yelp via http://www.yelp.com/biz/reber-patrick-n-od-anchorage...
+For yelp, comparing 
+            Reber Patrick N OD
+         to [u'patrick', '', u'reber']...
+Name does not match satisfactorily.
+For yelp, comparing [u'1345 w 9th ave', u'anchorage', u'ak', u'99501'] to [u'1345 w 9th ave', u'anchorage', u'ak', u'99501']...
+Match!
+No rating content found.
+SCRAPE FAILED. PROVIDER MISMATCH OR NO REVIEWS?
+--------------------------
+--------------------------
+*** SAVING results of [] to Patrick Reber Dr. ***
+*** DONE SAVING ***
+--------------------------
+------------------------------------------------------------
+------------------------------------------------------------
+*** SEARCHING for [u'Timothy', u'Brian', u'McLaughlin', u'Dr.'] ***
+------------------------------------------------------------
+query Timothy+Brian+McLaughlin+4007 old seward hwy ste 1100+anchorage+ak+99503+Optometry+reviews
+Address https://www.google.com/search?q=Timothy%2BBrian%2BMcLaughlin%2B4007+old+seward+hwy+ste+1100%2Banchorage%2Bak%2B99503%2BOptometry%2Breviews&num=20&hl=en&start=0
+FOUND POTENTIAL SITES: []
+--------------------------
+*** SAVING results of [] to Timothy McLaughlin Dr. ***
+*** DONE SAVING ***
+--------------------------
+------------------------------------------------------------
+------------------------------------------------------------
+*** SEARCHING for [u'Ian', u'P', u'Ford', u'Dr.'] ***
+------------------------------------------------------------
+query Ian+P+Ford+1345 w 9th ave+anchorage+ak+99501+Optometry+reviews
+Address https://www.google.com/search?q=Ian%2BP%2BFord%2B1345+w+9th+ave%2Banchorage%2Bak%2B99501%2BOptometry%2Breviews&num=20&hl=en&start=0
+FOUND POTENTIAL SITES: []
+--------------------------
+*** SAVING results of [] to Ian Ford Dr. ***
+*** DONE SAVING ***
+--------------------------
+------------------------------------------------------------
+------------------------------------------------------------
+*** SEARCHING for [u'Elizabeth', u'L', u'Bow', u'Dr.'] ***
+------------------------------------------------------------
+query Elizabeth+L+Bow+341 west tudor road suite 101+anchorage+ak+99503+Optometry+reviews
+Address https://www.google.com/search?q=Elizabeth%2BL%2BBow%2B341+west+tudor+road+suite+101%2Banchorage%2Bak%2B99503%2BOptometry%2Breviews&num=20&hl=en&start=0
+FOUND POTENTIAL SITES: []
+--------------------------
+*** SAVING results of [] to Elizabeth Bow Dr. ***
+*** DONE SAVING ***
+--------------------------
+------------------------------------------------------------
+------------------------------------------------------------
+*** SEARCHING for [u'Alyxandria', '', u'Morey', u'Dr.'] ***
+------------------------------------------------------------
+query Alyxandria+Morey+341 west tudor road suite 101+anchorage+ak+99503+Optometry+reviews
+Address https://www.google.com/search?q=Alyxandria%2BMorey%2B341+west+tudor+road+suite+101%2Banchorage%2Bak%2B99503%2BOptometry%2Breviews&num=20&hl=en&start=0
+FOUND POTENTIAL SITES: []
+--------------------------
+*** SAVING results of [] to Alyxandria Morey Dr. ***
+*** DONE SAVING ***
+--------------------------
+------------------------------------------------------------
+------------------------------------------------------------
+*** SEARCHING for [u'Jessica', u'L', u'Giesey', u'Dr.'] ***
+------------------------------------------------------------
+query Jessica+L+Giesey+1700 e parks hwy ste 300+wasilla+ak+99654+Optometry+reviews
+Address https://www.google.com/search?q=Jessica%2BL%2BGiesey%2B1700+e+parks+hwy+ste+300%2Bwasilla%2Bak%2B99654%2BOptometry%2Breviews&num=20&hl=en&start=0
+FOUND POTENTIAL SITES: []
+--------------------------
+*** SAVING results of [] to Jessica Giesey Dr. ***
+*** DONE SAVING ***
+--------------------------
+------------------------------------------------------------
+------------------------------------------------------------
+*** SEARCHING for [u'Cindy', u'M', u'Cork', u'Dr.'] ***
+------------------------------------------------------------
+query Cindy+M+Cork+9105 mendenhall mall rd ste 367+juneau+ak+99801+Optometry+reviews
+Address https://www.google.com/search?q=Cindy%2BM%2BCork%2B9105+mendenhall+mall+rd+ste+367%2Bjuneau%2Bak%2B99801%2BOptometry%2Breviews&num=20&hl=en&start=0
+FOUND POTENTIAL SITES: []
+--------------------------
+*** SAVING results of [] to Cindy Cork Dr. ***
+*** DONE SAVING ***
+--------------------------
+------------------------------------------------------------
+------------------------------------------------------------
+*** SEARCHING for [u'James', u'C', u'Falconer Jr', u'Dr.'] ***
+------------------------------------------------------------
+query James+C+Falconer Jr+1345 w 9th ave+anchorage+ak+99501+Optometry+reviews
+Address https://www.google.com/search?q=James%2BC%2BFalconer+Jr%2B1345+w+9th+ave%2Banchorage%2Bak%2B99501%2BOptometry%2Breviews&num=20&hl=en&start=0
+FOUND POTENTIAL SITES: []
+--------------------------
+*** SAVING results of [] to James Falconer Jr Dr. ***
+*** DONE SAVING ***
+--------------------------
+------------------------------------------------------------
+------------------------------------------------------------
+*** SEARCHING for [u'Eliza', u'A', u'Salvo', u'Dr.'] ***
+------------------------------------------------------------
+query Eliza+A+Salvo+341 west tudor road suite 101+anchorage+ak+99503+Optometry+reviews
+Address https://www.google.com/search?q=Eliza%2BA%2BSalvo%2B341+west+tudor+road+suite+101%2Banchorage%2Bak%2B99503%2BOptometry%2Breviews&num=20&hl=en&start=0
+FOUND POTENTIAL SITES: []
+--------------------------
+*** SAVING results of [] to Eliza Salvo Dr. ***
+*** DONE SAVING ***
+--------------------------
+------------------------------------------------------------
+------------------------------------------------------------
+*** SEARCHING for [u'Anthony', u'J', u'Makar', u'Dr.'] ***
+------------------------------------------------------------
+query Anthony+J+Makar+341 west tudor road suite 101+anchorage+ak+99503+Optometry+reviews
+Address https://www.google.com/search?q=Anthony%2BJ%2BMakar%2B341+west+tudor+road+suite+101%2Banchorage%2Bak%2B99503%2BOptometry%2Breviews&num=20&hl=en&start=0
+FOUND POTENTIAL SITES: []
+--------------------------
+*** SAVING results of [] to Anthony Makar Dr. ***
+*** DONE SAVING ***
+--------------------------
+------------------------------------------------------------
+------------------------------------------------------------
+*** SEARCHING for [u'Denise', '', u'Thanepohn', u'Dr.'] ***
+------------------------------------------------------------
+query Denise+Thanepohn+1700 e parks hwy ste 300+wasilla+ak+99654+Optometry+reviews
+Address https://www.google.com/search?q=Denise%2BThanepohn%2B1700+e+parks+hwy+ste+300%2Bwasilla%2Bak%2B99654%2BOptometry%2Breviews&num=20&hl=en&start=0
+FOUND POTENTIAL SITES: []
+--------------------------
+*** SAVING results of [] to Denise Thanepohn Dr. ***
+*** DONE SAVING ***
+--------------------------
+------------------------------------------------------------
+------------------------------------------------------------
+*** SEARCHING for [u'Rebecca', u'J', u'Makar', u'Dr.'] ***
+------------------------------------------------------------
+query Rebecca+J+Makar+341 west tudor road suite 101+anchorage+ak+99503+Optometry+reviews
+Address https://www.google.com/search?q=Rebecca%2BJ%2BMakar%2B341+west+tudor+road+suite+101%2Banchorage%2Bak%2B99503%2BOptometry%2Breviews&num=20&hl=en&start=0
+FOUND POTENTIAL SITES: []
+--------------------------
+*** SAVING results of [] to Rebecca Makar Dr. ***
+*** DONE SAVING ***
+--------------------------
+------------------------------------------------------------
+------------------------------------------------------------
+*** SEARCHING for [u'William', u'D', u'Faulkner', u'Dr.'] ***
+------------------------------------------------------------
+query William+D+Faulkner+400 l st ste 104+anchorage+ak+99501+Optometry+reviews
+Address https://www.google.com/search?q=William%2BD%2BFaulkner%2B400+l+st+ste+104%2Banchorage%2Bak%2B99501%2BOptometry%2Breviews&num=20&hl=en&start=0
+FOUND POTENTIAL SITES: []
+--------------------------
+*** SAVING results of [] to William Faulkner Dr. ***
+*** DONE SAVING ***
+--------------------------
+------------------------------------------------------------
+------------------------------------------------------------
+*** SEARCHING for [u'Victoria', u'H', u'Yu', u'Dr.'] ***
+------------------------------------------------------------
+query Victoria+H+Yu+300 e dimond blvd ste 14+anchorage+ak+99515+Optometry+reviews
+Address https://www.google.com/search?q=Victoria%2BH%2BYu%2B300+e+dimond+blvd+ste+14%2Banchorage%2Bak%2B99515%2BOptometry%2Breviews&num=20&hl=en&start=0
+FOUND POTENTIAL SITES: []
+--------------------------
+*** SAVING results of [] to Victoria Yu Dr. ***
+*** DONE SAVING ***
+--------------------------
+------------------------------------------------------------
+------------------------------------------------------------
+*** SEARCHING for [u'Rowena', '', u'Rivera', u'Dr.'] ***
+------------------------------------------------------------
+query Rowena+Rivera+341 west tudor road suite 101+anchorage+ak+99503+Optometry+reviews
+Address https://www.google.com/search?q=Rowena%2BRivera%2B341+west+tudor+road+suite+101%2Banchorage%2Bak%2B99503%2BOptometry%2Breviews&num=20&hl=en&start=0
+FOUND POTENTIAL SITES: []
+--------------------------
+*** SAVING results of [] to Rowena Rivera Dr. ***
+*** DONE SAVING ***
+--------------------------
+------------------------------------------------------------
+------------------------------------------------------------
+*** SEARCHING for [u'Ladd', '', u'Nolin', u'Dr.'] ***
+------------------------------------------------------------
+query Ladd+Nolin+1345 w 9th ave+anchorage+ak+99501+Optometry+reviews
+Address https://www.google.com/search?q=Ladd%2BNolin%2B1345+w+9th+ave%2Banchorage%2Bak%2B99501%2BOptometry%2Breviews&num=20&hl=en&start=0
+h3: http://www.yelp.com/biz/nolin-ladd-m-od-anchorage
+FOUND POTENTIAL SITES: ['yelp']
+SCRAPING SITE yelp via http://www.yelp.com/biz/nolin-ladd-m-od-anchorage...
+For yelp, comparing 
+            Nolin Ladd M OD
+         to [u'ladd', '', u'nolin']...
+Name does not match satisfactorily.
+For yelp, comparing [u'1345 w 9th ave', u'anchorage', u'ak', u'99501'] to [u'1345 w 9th ave', u'anchorage', u'ak', u'99501']...
+Match!
+No rating content found.
+SCRAPE FAILED. PROVIDER MISMATCH OR NO REVIEWS?
+--------------------------
+--------------------------
+*** SAVING results of [] to Ladd Nolin Dr. ***
+*** DONE SAVING ***
+--------------------------
+------------------------------------------------------------
+------------------------------------------------------------
+*** SEARCHING for [u'Steven', u'S', u'Dobson', u'Dr.'] ***
+------------------------------------------------------------
+query Steven+S+Dobson+1000 e dimond blvd+anchorage+ak+99515+Optometry+reviews
+Address https://www.google.com/search?q=Steven%2BS%2BDobson%2B1000+e+dimond+blvd%2Banchorage%2Bak%2B99515%2BOptometry%2Breviews&num=20&hl=en&start=0
+h3: http://www.yelp.com/biz/dobson-steven-s-od-anchorage
+FOUND POTENTIAL SITES: ['yelp']
+SCRAPING SITE yelp via http://www.yelp.com/biz/dobson-steven-s-od-anchorage...
+For yelp, comparing 
+            Dobson-Hazelton Lauren OD
+         to [u'steven', u's', u'dobson']...
+Name does not match satisfactorily.
+For yelp, comparing [u'1000 e dimond blvd', u'anchorage', u'ak', u'99515'] to [u'1000 e dimond blvd', u'anchorage', u'ak', u'99515']...
+Match!
+No rating content found.
+SCRAPE FAILED. PROVIDER MISMATCH OR NO REVIEWS?
+--------------------------
+--------------------------
+*** SAVING results of [] to Steven Dobson Dr. ***
+*** DONE SAVING ***
+--------------------------
+------------------------------------------------------------
+------------------------------------------------------------
+*** SEARCHING for [u'Joshua', u'J', u'Cook', u'Dr.'] ***
+------------------------------------------------------------
+query Joshua+J+Cook+1345 w 9th ave+anchorage+ak+99501+Optometry+reviews
+Address https://www.google.com/search?q=Joshua%2BJ%2BCook%2B1345+w+9th+ave%2Banchorage%2Bak%2B99501%2BOptometry%2Breviews&num=20&hl=en&start=0
+FOUND POTENTIAL SITES: []
+--------------------------
+*** SAVING results of [] to Joshua Cook Dr. ***
+*** DONE SAVING ***
+--------------------------
+------------------------------------------------------------
+------------------------------------------------------------
+*** SEARCHING for [u'BRETT', u'A', u'BASS', ''] ***
+------------------------------------------------------------
+query BRETT+A+BASS+1317 mill bay rd+kodiak+ak+99615+General Dentist+reviews
+Address https://www.google.com/search?q=BRETT%2BA%2BBASS%2B1317+mill+bay+rd%2Bkodiak%2Bak%2B99615%2BGeneral+Dentist%2Breviews&num=20&hl=en&start=0
+h3: http://www.vitals.com/dentists/Dr_Brett_Bass
+h3: http://www.ucomparehealthcare.com/dentist/brett_bass/
+FOUND POTENTIAL SITES: ['vitals', 'ucomparehealthcare']
+SCRAPING SITE vitals via http://www.vitals.com/dentists/Dr_Brett_Bass...
+http://www.vitals.com/dentists/Dr_Brett_Bass/reviews
+For vitals, comparing [u'brett', u'a', u'bass'] to [u'brett', u'a', u'bass']...
+Match!
+--------------------------
+vitals RESULTS: [0.0, '', 0]
+--------------------------
+--------------------------
+SCRAPING SITE ucomparehealthcare via http://www.ucomparehealthcare.com/dentist/brett_bass/...
+http://www.ucomparehealthcare.com/dentist/brett_bass
+SCRAPE FAILED. PROVIDER MISMATCH OR NO REVIEWS?
+--------------------------
+--------------------------
+*** SAVING results of ['vitals'] to BRETT BASS  ***
+*** DONE SAVING ***
+--------------------------
+------------------------------------------------------------
+------------------------------------------------------------
+*** SEARCHING for [u'DONALD', u'E', u'BURK', ''] ***
+------------------------------------------------------------
+query DONALD+E+BURK+2805 dawson st ste 1+anchorage+ak+99503+General Dentist+reviews
+Address https://www.google.com/search?q=DONALD%2BE%2BBURK%2B2805+dawson+st+ste+1%2Banchorage%2Bak%2B99503%2BGeneral+Dentist%2Breviews&num=20&hl=en&start=0
+FOUND POTENTIAL SITES: []
+--------------------------
+*** SAVING results of [] to DONALD BURK  ***
+*** DONE SAVING ***
+--------------------------
+------------------------------------------------------------
+------------------------------------------------------------
+*** SEARCHING for [u'STEPHEN', u'W', u'CHRISTENSEN', ''] ***
+------------------------------------------------------------
+query STEPHEN+W+CHRISTENSEN+1401 s seward meridian pkwy+wasilla+ak+99654+General Dentist+reviews
+Address https://www.google.com/search?q=STEPHEN%2BW%2BCHRISTENSEN%2B1401+s+seward+meridian+pkwy%2Bwasilla%2Bak%2B99654%2BGeneral+Dentist%2Breviews&num=20&hl=en&start=0
+h3: http://www.vitals.com/dentists/Dr_Stephen_W_Christensen
+FOUND POTENTIAL SITES: ['vitals']

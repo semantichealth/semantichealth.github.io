@@ -1,209 +1,54 @@
-This code is a tweaked version of Tory Hoke's PCPInvestigator
-Tweaked for aca Semantic Health Proeject
-- Scripts tested on Linux.
-- Not all modules were used.
-- Most changes made to PCPScraper and PCPSites
-- PCPScraper and PCPSites scripts changed to reflect updates on Rating websites
-
-
-Below is original Readme file.
----------------------------------------------------------------------------
-       PCPInvestigator
-       Copyright 2015 Tory Hoke
-
-                 Program URI: http://github.com/AteYourLembas/PCPInvestigator
-                 Description: Web scraper for aggregating reviews of health care providers. Scraping violates Google ToS. For educational purposes only.
-                     Version: 0.2.0
-                      Author: Tory Hoke
-                  Author URI: http://www.toryhoke.com
-                     License: GNU General Public License
-                 License URI: http://www.opensource.org/licenses/gpl-license.php
-                  Repository: https://github.com/AteYourLembas/PCPInvestigator
-
-
-
-DESCRIPTION
-
-This package includes
-
-- PCPReader: parses text file of health care providers and adds results to mongodb collection (db.providers)
-- PCPScraper: scrapes medical review websites (HealthGrades, UCompareHealthCare, Vitals, Yelp) for reviews of each health care provider
-- PCPReport: launches a local report server for viewing the report via browser
-
-
-INCLUDED IN THIS REPOSITORY
-
-- jQuery 1.11.0
-- jQuery TableSorter
- * TableSorter 2.0 - Client-side table sorting with ease!
- * Version 2.0.5b
- * @requires jQuery v1.2.3
- * 
- * Copyright (c) 2007 Christian Bach
- * Examples and docs at: http://tablesorter.com
-
-
-
-DEPENDENCIES
-
- REQUIRED
- mongodb, Beautiful Soup, lxml
- * pymongo, jellyfish
-
-	
-> brew install mongodb
-
-> pip install beautifulsoup4
-
-> pip install lxml
-
-(Installation may require sudo. Consider a virtual environment for maximum peace of mind.)
-
-
-
- OPTIONAL
-
-If you want to be able to calculate distance between your zip and the health care provider's zip (for sorting), you will need a database of zip codes and longitude/latitude. If you don't care about distance calculation, you can skip this step.
-
-- Download the mongoDB zipcodes data set from https://docs.mongodb.org/manual/tutorial/aggregation-zip-code-data-set/ (or search for "mongodb zip code database")
-- From a command line, run
-
-> mongoimport --db test --collection zips --file /your/download/location/zips.json
-
-
-
-HOW TO USE
-
-1) Prepare a text file of all the health care providers you'd like to search for. 
-
-For example, you could
-
-- Log in to your health insurance website
-- Perform a search for "Primary Care Providers"
-- Print the results to a PDF
-- Open the PDF and copy-paste the contents into a text file
-- Clean up any unwanted text
-
-
-Expected sample format of entries in the file to be read
-
-Provider ID #: 123456
-PROSPECT HEALTHSOURCE
-MEDGR, INC
-Lastname, Firstname, MD
-Internal Medicine
-12345 West Washington Blvd.
-Los Angeles, CA 90066
-(310) 123-4567 
-
-
-In this case, "Provider ID #" indicates the start of a new entry. Change the PROVIDER_TRIGGER constant in PCPConstants to reflect whatever indicates the start of a new entry in your text file.
-
-
-If your text file isn't exactly in this format, PCPReader may still work. Try a dry run and check the output.
-If the parsed information isn't correct, you may need to modify the order lines are stored in PCPReader.runAction(). Sorry!
-
-
-
-2) Start mongod so this script can connect (keep it running in its own terminal tab)
-> mongod
-
-
-3) Change KNOWN_PRACTICES constant in PCPConstants to contain the list of practices expected in your text file (e.g. ["Family Practice", "General Practice", "Pediatrics", ... ]
-
-4) Change any other constants in PCPConstants that you need to.
-
-
-5) Use PCPReader to parse the text file and mark it with any group name you like. 
-
-python PCPReader.py --help
-Usage: PCPReader.py [options]
-
-Options:
-  -h, --help            show this help message and exit
-  -f PROVIDERFILE, --providerFile=PROVIDERFILE
-                        Full path to providerFile. See sample provider file
-                        for desired format, or adjust format parser.
-  -n NICKNAME, --nickname=NICKNAME
-                        Insurance nickname, to be stored with each provider
-                        (e.g. aetna, kaiser, bluecross)
-  -d, --dryrun          Simulate and generate output for first five entries.
-                        Do not add to database.
-
-
-For example, to try a dry run of reading providers into the group "aetna_2015":
-
-python PCPReader.py -n aetna_2015 -f /path/to/input/aetna_provider_01.txt -d
-
-
-To actually perform the scrape and add reviews to the database:
-
-python PCPReader.py -n aetna_2015 -f /path/to/input/aetna_provider_01.txt -d
-
-
-
-6) To see your new records, start a mongo session in a new Terminal window and search:
-
-> db.providers.find()
-
-
-7) In case you have duplicate entries, use something like this on your final mongo db.
-USE CAUTION AND MAKE BACKUPS in case this doesn't behave as you expect.
-
-from the mongo prompt:
-
-> db.providers.ensureIndex({lastname: 1, firstname: 1, middlename: 1, phone: 1}, {unique: true, dropDups:true})
-
-
-8) Now that your database is populated, run the web scrape. It will search for results for providers in the database that have no "lastscraped" value. (Thus the ones you just added. If you ever want to re-scrape a provider, clear its "lastscraped" value.) 
-
-Again, -d will launch a dry run: outputting results for the first five doctors without adding them to the database. This will let you see whether the scrape is working.
-
-> python PCPScraper.py -d
-
-To diagnose errors, use the tests in this package's "test" directory.
-
-When you're ready for production, run the scraper without the dry run flag:
-
-> python PCPScraper.py
-
-Check the output once in a while to see if it's performing as you expect.
-
-
-
-
-9) When scraping is finished, view the report by running
-
-> python PCPReport.py
-
-
-
-10) In PCPReport.py's output, verify where script is "Listening" (http://localhost:8080/) and open that address in your web browser to get to PCPDetails:
-
-http://localhost:8080/PCPReport/
-
-
-11) If you like, you can save this report as a static HTML file for offline reference. 
-
-
-
-WARNINGS
-
-- Web scraping violates Google ToS. Irresponsible use may result in your IP getting blocked.
-- Pymongo cursor has no timeout (due to long intervals between scrapes.) Proceed w/ caution.
-
-
-
-
-KNOWN ISSUES
-
-
-- Health care review website formats change without notice.
-- Searches by doctor name and so may suffer false positives (i.e. include reviews for other doctors of the same name) or false negatives (i.e. omit some available reviews)
-- Disparities between your input file and the expected input format may require elbow grease to resolve.
-- Script developed on OSX. Installation/execution not tested on any other system.
-
-
-
-
-Hope this helps. Good luck, and enjoy!
+## Provider Ratings Scrape from Yelp, HealthGrades, UCompareHealthcare & Vitals
+
+Code for scraping Provider Ratings were forked from [PCPInvestigator - by Tory Hoke](https://github.com/AteYourLembas/PCPInvestigator).
+
+The PCPInvestigator supports scraping from four different Health Care Provider rating sites:
+* [Yelp](http://www.yelp.com)
+* [HealthGrades](http://www.healthgrades.com)
+* [Vitals](http://www.vitals.com)
+* [UcompareHealthcare](http://www.ucomparehealthcare.com)
+
+For the SemanticHealth Project we made changes to scrapers to accommodate latest updates to respective rating websites. Additional code changes generating scraped results in Json files for ingestion to MongoDb/Elastic Search were also implemented.
+
+Below are sample results (json) from scraping Provider ratings after incorporating our changes. As you can see, some of the providers don't have any hits from any of the rating sites and the ratings field is empty.
+
+```json
+[{"city": "portland", "zip": "97216", "firstname": "MICHAEL", "ratings": [{"path": "http://www.vitals.com/doctors/Dr_Michael_Bohley/reviews", "sourcetype": "vitals", "numreviews": 15, "overallscore": 0.9}], "middlename": "F", "lastname": "BOHLEY", "lastscraped": "2016-08-17 00:00:00", "state": "or", "prefix": "", "address": "10201 se main st  suite 20", "speciality": "PLASTIC SURGERY"}]
+[{"city": "mcminnville", "zip": "97128", "firstname": "MARGARET", "ratings": [], "middlename": "JEAN", "lastname": "MILLER", "lastscraped": "2016-08-17 00:00:00", "state": "or", "prefix": "", "address": "2435 ne cumulus ave  suite a", "speciality": "PEDIATRICS"}]
+[{"city": "salem", "zip": "97301", "firstname": "Julie", "ratings": [], "middlename": "Elizabeth", "lastname": "York", "lastscraped": "2016-08-17 00:00:00", "state": "or", "prefix": "Dr.", "address": "875 oak st se ste 5085", "speciality": "Neurologic Surgery"}]
+[{"city": "corvallis", "zip": "97330", "firstname": "Kristy", "ratings": [{"path": "http://www.vitals.com/doctors/Dr_Kristy_JessopShankowski/reviews", "sourcetype": "vitals", "numreviews": 8, "overallscore": 0.7}], "middlename": "L", "lastname": "JessopShankowski", "lastscraped": "2016-08-17 00:00:00", "state": "or", "prefix": "", "address": "3521 nw samaritan dr ste 201", "speciality": "Internal Medicine"}]
+[{"city": "klamath falls", "zip": "97601", "firstname": "Peter", "ratings": [{"path": "http://www.vitals.com/doctors/Dr_Peter_Lusich/reviews", "sourcetype": "vitals", "numreviews": 4, "overallscore": 0.6}], "middlename": "L", "lastname": "Lusich", "lastscraped": "2016-08-17 00:00:00", "state": "or", "prefix": "", "address": "2865 daggett ave", "speciality": "Anesthesiology"}]
+[{"city": "kodiak", "zip": "99615", "firstname": "BRETT", "ratings": [{"path": "http://www.vitals.com/dentists/Dr_Brett_Bass/reviews", "sourcetype": "vitals", "numreviews": 0, "overallscore": 0.0}], "middlename": "A", "lastname": "BASS", "lastscraped": "2016-08-17 00:00:00", "state": "ak", "prefix": "", "address": "1317 mill bay rd", "speciality": "General Dentist"}]
+[{"city": "anchorage", "zip": "99503", "firstname": "DONALD", "ratings": [], "middlename": "E", "lastname": "BURK", "lastscraped": "2016-08-17 00:00:00", "state": "ak", "prefix": "", "address": "2805 dawson st ste 1", "speciality": "General Dentist"}]
+[{"city": "wasilla", "zip": "99654", "firstname": "STEPHEN", "ratings": [{"path": "http://www.vitals.com/dentists/Dr_Stephen_W_Christensen/reviews", "sourcetype": "vitals", "numreviews": 0, "overallscore": 0.0}], "middlename": "W", "lastname": "CHRISTENSEN", "lastscraped": "2016-08-17 00:00:00", "state": "ak", "prefix": "", "address": "1401 s seward meridian pkwy", "speciality": "General Dentist"}]
+[{"city": "tok", "zip": "99780", "firstname": "SUSAN", "ratings": [{"path": "http://www.vitals.com/dentists/Dr_Susan_Y_Crawford/reviews", "sourcetype": "vitals", "numreviews": 2, "overallscore": 1.0}], "middlename": "", "lastname": "CRAWFORD", "lastscraped": "2016-08-17 00:00:00", "state": "ak", "prefix": "", "address": "no 1245 tok cutoff", "speciality": "General Dentist"}]
+```
+Here is a sample log from the Scrape process:
+
+```
+------------------------------------------------------------
+*** SEARCHING for [u'Vered', '', u'Sobel', u'Dr.'] ***
+------------------------------------------------------------
+query Vered+Sobel+65 allen st+rutland+vt+05701+Ophthalmology+reviews
+Address https://www.google.com/search?q=Vered%2BSobel%2B65+allen+st%2Brutland%2Bvt%2B05701%2BOphthalmology%2Breviews&num=20&hl=en&start=0
+h3: http://www.vitals.com/doctors/Dr_Vered_Sobel.html
+h3: http://www.vitals.com/doctors/Dr_Vered_Sobel/reviews
+FOUND POTENTIAL SITES: ['vitals', 'vitals']
+SCRAPING SITE vitals via http://www.vitals.com/doctors/Dr_Vered_Sobel.html...
+http://www.vitals.com/doctors/Dr_Vered_Sobel/reviews
+For vitals, comparing [u'vered', u'sobel'] to [u'vered', '', u'sobel']...
+Match!
+found a block of reqviews
+ 6 reviews found
+--------------------------
+vitals RESULTS: [0.7, '', 16]
+--------------------------
+--------------------------
+--------------------------
+*** SAVING results of ['vitals'] to Vered Sobel Dr. ***
+*** DONE SAVING ***
+```
+
+Although the code is functional and tested, it has one major limitation with running on a large set of providers - the code uses Google to do a search and then scrapes the search results for any mention in one of the rating sites and then crawls the specific rating websites. Even with randomizing request headers and timing between request, search results returned 403 errors, mostly from Google blocking IP calls. So we were not able to use Provider ratings. The code still captures the scrape elements and is usable for smaller data sets.
+
+Ratings from such public ratings sites are also not entirely accurate and we expect them to be even missing for large number of providers. That said as time permits this code can be further enhanced to overcome such limitations. Additional rating sites can be includes as they become available.
