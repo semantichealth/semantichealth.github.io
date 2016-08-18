@@ -376,31 +376,33 @@
                 <br>
                 <img src="data/infrastructure.png" class="img-responsive center-block" alt="Data Processing Infrastructure">
                 <h3>Amazon AWS</h3>
-
+                <p class="lead">
+                    All infrastructure built and managed with <a href="https://www.vagrantup.com/">Vagrant</a> and <a href="https://www.ansible.com/">Ansible</a>.
+                <p>
                 <p class="lead">
                     Amazon AWS services used:
-                    <ol>
+                    <ul>
                         <li>S3: Object storage for the data files and database backups</li>
                         <li>EC2: Compute and attached SSD storage for MongoDB</li>
                         <li>RDS: Managed PostgreSQL instance for RDBMS functionality</li>
                         <li>ES: Elasticsearch service for initial index testing</li>
-                    </ol>
+                    </ul>
                 <p>
                 <h3>IBM SoftLayer</h3>
 
                 <p class="lead">
                     IBM SoftLayer services used:
-                <ol>
+                <ul>
                     <li>Virtual machines and network storage for Elasticsearch cluster nodes</li>
                     <li>Virtual machine and network storage for HAProxy</li>
-                </ol>
+                </ul>
                 <p>
-                <h3>PostgreSQL RDBMS</h3>
+                <h3><a href="https://www.postgresql.org/">PostgreSQL RDBMS</a></h3>
 
                 <p class="lead">
                     Single 20GB instance with automated backup used for state tracking and auxilliary data storage
                 <p>
-                <h3>MongoDB 3.2 NoSQL Database</h3>
+                <h3><a href="https://www.mongodb.com/">MongoDB 3.2 NoSQL Database</a></h3>
 
                 <p class="lead">
                     <ul>
@@ -408,10 +410,10 @@
                         <li>256GB SSD /data volume</li>
                         <li>25GB  SSD /log volume</li>
                         <li>10GB  SSD /journal volume</li>
-                        <li>10GB   SSD / volume</li>
+                        <li>10GB  SSD / volume</li>
                     </ul>
                 <p>
-                <h3>Elasticsearch 2.3.5 Cluster</h3>
+                <h3><a href="https://www.elastic.co/">Elasticsearch 2.3.5 Cluster</a></h3>
 
                 <p class="lead">
                     <ul>
@@ -422,7 +424,7 @@
                         <li>10GB  SAN / volume</li>
                     </ul>
                 <p>
-                <h3>HAProxy 1.6.8 Load Balancer</h3>
+                <h3><a href="http://www.haproxy.org/">HAProxy 1.6.8 Load Balancer</a></h3>
 
                 <p class="lead">
                     <ul>
