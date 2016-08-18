@@ -8,7 +8,9 @@
 ###Data Flow
 ![alt tag](data_flow.jpg)
 
+<!--
 ###Use Cases
 ![alt tag](https://github.com/semantichealth/semantichealth.github.io/blob/master/letor/doc/example1.jpg)
 ![alt tag](https://github.com/semantichealth/semantichealth.github.io/blob/master/letor/doc/example2.jpg)
 ![alt tag](https://github.com/semantichealth/semantichealth.github.io/blob/master/letor/doc/example3.jpg)
+-->
