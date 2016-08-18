@@ -1,0 +1,213 @@
+{% import "bootstrap/wtf.html" as wtf %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Semantic Health</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Custom CSS -->
+    <link href="/static/css/landing-page.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="/static/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
+        <div class="container topnav">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand topnav logo-small" href="#">
+                  <img src="/static/img/semantic-health-logo-small.png" alt="Semantic Health Small Logo">
+                </a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#plans">Plans</a>
+                    </li>
+                    <li>
+                        <a href="#policy">Policy</a>
+                    </li>
+                    <li>
+                        <a href="#team">Team</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+
+    <!-- Header -->
+    <a name="home"></a>
+    <div class="intro-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="intro-message">
+                        <img src="/static/img/semantic-health-logo.png" class="img-responsive center-block" alt="Semantic Health Logo">
+                        <hr class="intro-divider">
+                        <h2>Choose the Right Obamacare Plan</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.intro-header -->
+
+    <!-- Page Content -->
+
+	<a  name="plans"></a>
+    <div class="content-section-a">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+              <h2 class="section-heading">Plans</h2>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+              <p class="lead">
+                Fill out the short form below and we will present you with a list of plans tailored to your needs. Alternatively, <a href="javascript:void(0)" id="demo_button">click here</a> to prefill the fields in demo mode.
+              </p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+              {{ wtf.quick_form(form, form_type='basic') }}
+            </div>
+          </div>
+        </div>
+        <!-- /.container -->
+    </div>
+
+  <a name="policy"></a>
+    <div class="content-section-b">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <h2 class="section-heading">Data Policy</h2>
+                </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <h4>Collection</h4>
+                <p class="lead">
+                  We collect data from the form's required fields&mdash;state, age, zip code, health conditions. We also collect the list of plans served to you, and the ones you clicked on.
+                </p>
+                <h4>Usage</h4>
+                <p class="lead">
+                  We use your data to improve the ranking of insurance plans, in order to make the search results as tailored to you as possible.
+                </p>
+                <h4>Access</h4>
+                <p class="lead">
+                  Only our team has access to your data, and we will not share any piece of it without your permission.
+                </p>
+              </div>
+              <div class="col-md-6">
+                <h4>Expiration</h4>
+                <p class="lead">
+                  We delete data older than 12 months. If you have questions about whether your data is in our system, send us an email and we'll let you know.
+                </p>
+                <h4>Consent</h4>
+                <p class="lead">
+                  By using Semantic Health, you are consenting to our data policy. If any part of it is not acceptable to you, please contact us and we will do our best to accommodate your requests.
+                </p>
+              </div>
+            </div>
+        </div>
+        <!-- /.container -->
+    </div>
+
+  <a name="team"></a>
+    <div class="content-section-a">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <h2 class="section-heading">Team</h2>
+                </div>
+          </div>
+          <div class="row">
+            <!-- <div class="col-md-8 col-md-offset-2"> -->
+              <p class="lead">
+                  We are students from UC Berkeley's Master of Information and Data Science program.
+                  Signing up for health insurance from the Affordable Care Act (Obamacare) is difficult, and finding plans with preferred providers or drugs that you depend on involves significant work and expertise.
+                  We built Semantic Health with the goal to substantially improve the Obamacare enrollment process.
+              </p>
+            <!-- </div> -->
+          </div>
+          <!-- <div class="row div-h-center">
+            <a href="https://github.com/IronSummitMedia/startbootstrap" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
+          </div> -->
+        </div>
+        <!-- /.container -->
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <ul class="list-inline">
+                        <li>
+                            <a href="#">Home</a>
+                        </li>
+                        <li class="footer-menu-divider">&sdot;</li>
+                        <li>
+                            <a href="#plans">Plans</a>
+                        </li>
+                        <li class="footer-menu-divider">&sdot;</li>
+                        <li>
+                            <a href="#policy">Policy</a>
+                        </li>
+                        <li class="footer-menu-divider">&sdot;</li>
+                        <li>
+                            <a href="#team">Team</a>
+                        </li>
+                    </ul>
+                    <p class="copyright text-muted small">Copyright &copy; Semantic Health 2016. All Rights Reserved</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js" integrity="sha256-h0cGsrExGgcZtSZ/fRz4AwV+Nn6Urh/3v3jFRQ0w9dQ=" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap typeahead -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
+
+    <!-- Main JS -->
+    <script src="/static/js/main.js"></script>
+
+</body>
+
+</html>
