@@ -68,4 +68,6 @@ Mapping Disease to List of RxNormIds (of Drugs associated with that disease)
 		"rxnormlist": ["1159691", "1159692", "1182862", "1182863", "495881", "597745", "597746", "597747", "615977", "615978", "615979", "619985"]
 	}
 }]
-```  
+```
+
+**Note**: Summary descriptions are provided as comments inside each script and contains additional details.
