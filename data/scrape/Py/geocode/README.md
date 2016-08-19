@@ -1,4 +1,4 @@
-## Scripts to pull GeoLocations
+## Scripts to pull Geo Locations
 
 Pulling Geocodes for over a Million providers proved a significant challenge. Most data sources and APIs out there had daily limitation on the number of free Geo pulls and additional pulls were prohibitively expensive at least for the purposes of this project. In the end we were very excited that SmartyStreets (Thank you Jefferson!) offered to support our project by providing an unlimited pull license which we eventually used to pull Geo Locations for over a million plus providers.
 
@@ -27,4 +27,7 @@ Additional scripts were required to push scraped geocodes to the Provider Collec
         }
       ]
 ```
-Given a PlanID, the associated Provider Name and address geo codes can be easily queried from the Provider Collection in MongoDb and used to show Map with nearby provider locations.
+Given a Plans ID, the associated Provider Name and address geo codes can be easily queried from the Provider Collection in MongoDb and used to show markers in a Map window as nearby provider locations.
+
+
+**Note**: Summary descriptions are provided as comments inside each script and contains additional details.
