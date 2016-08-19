@@ -191,3 +191,8 @@ p.copyright {
 .carousel-indicators .active {
   background-color: #444;
 }
+
+.thanks-names {
+  color: #0a505f;
+  font-weight: bold;
+}
