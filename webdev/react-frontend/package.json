@@ -22,7 +22,7 @@
     "extract-text-webpack-plugin": "^0.8.2",
     "file-loader": "^0.8.4",
     "html-webpack-plugin": "^1.7.0",
-    "node-sass": "^3.3.3",
+    "node-sass": "^4.14.1",
     "postcss-loader": "^0.8.0",
     "react-router": "^2.0.0",
     "sass-loader": "^3.0.0",
